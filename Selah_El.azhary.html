@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="منصة سلاح الأزهري - منصة تعليمية متكاملة لطلاب المرحلة الثانوية الأزهرية">
+  <meta name="keywords" content="منصة تعليمية, الأزهر الشريف, الثانوية الأزهرية, تعليم إلكتروني">
+  <title>منصة سلاح الأزهري</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --accent-color: #4895ef;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+      --success-color: #4cc9f0;
+      --warning-color: #f72585;
+      --science-color: #3a86ff;
+      --literary-color: #8338ec;
+    }
+    
+    * {
+      box-sizing: border-box;
+      font-family: 'Tajawal', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      min-height: 100vh;
+      color: var(--dark-color);
+      padding-top: 60px;
+    }
+    
+    /* شريط الأدوات المتموج الجديد */
+    .wave-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .wave-toolbar::before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%234361ee"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%234361ee"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%234361ee"/></svg>');
+      background-size: 1200px 100%;
+      background-repeat: repeat-x;
+      animation: wave 12s linear infinite;
+    }
+    
+    @keyframes wave {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 1200px; }
+    }
+    
+    .toolbar-logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .toolbar-logo img {
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+    }
+    
+    .toolbar-title {
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    
+    .toolbar-actions {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .toolbar-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 16px;
+    }
+    
+    .toolbar-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.1);
+    }
+    
+    /* Splash Screen Animation */
+    .splash-screen {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1.5s ease forwards;
+      animation-delay: 2s;
+    }
+    
+    .splash-logo {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite, rotate 4s linear infinite;
+    }
+    
+    .splash-text {
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .loading-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    
+    .loading-progress {
+      height: 100%;
+      width: 0;
+      background: white;
+      animation: loading 2s ease-in-out forwards;
+    }
+    
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes loading {
+      to { width: 100%; }
+    }
+    
+    /* Floating Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      animation: float linear infinite;
+    }
+    
+    @keyframes float {
+      to {
+        transform: translateY(-100vh);
+      }
+    }
+    
+    /* Main Layout */
+    .login-container, .container {
+      display: none;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Login Page */
+    .login-box {
+      max-width: 480px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .login-header img {
+      width: 100px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+    
+    .login-header img:hover {
+      transform: rotate(10deg);
+    }
+    
+    .login-header h2 {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .login-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      border-radius: 3px;
+    }
+    
+    .login-header p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .input-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      transition: all 0.3s;
+    }
+    
+    .login-box input,
+    .login-box select {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .login-box input:focus,
+    .login-box select:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+      outline: none;
+    }
+    
+    .login-box input:focus + i {
+      color: var(--accent-color);
+      transform: translateY(-50%) scale(1.2);
+    }
+    
+    .upload-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 15px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+      font-size: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .upload-label::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: all 0.5s;
+    }
+    
+    .upload-label:hover::after {
+      left: 100%;
+    }
+    
+    .upload-label:hover {
+      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+    }
+    
+    .upload-label i {
+      margin-left: 8px;
+    }
+    
+    #profilePic {
+      display: none;
+    }
+    
+    .button {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: all 0.5s;
+    }
+    
+    .button:hover::after {
+      left: 100%;
+    }
+    
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+    }
+    
+    .button:active {
+      transform: scale(0.98);
+    }
+    
+    .button i {
+      margin-left: 8px;
+    }
+    
+    /* Main Page */
+    .profile {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 0.8s ease forwards;
+      position: relative;
+    }
+    
+    .profile::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+    }
+    
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+    
+    .profile img:hover {
+      transform: rotate(5deg) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .profile h2 {
+      color: var(--dark-color);
+      margin-bottom: 5px;
+      font-size: 1.5rem;
+    }
+    
+    .profile p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .profile-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      margin: 5px;
+      color: white;
+    }
+    
+    .badge-science {
+      background: var(--science-color);
+    }
+    
+    .badge-literary {
+      background: var(--literary-color);
+    }
+    
+    /* Profile Edit Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: modalFadeIn 0.3s ease;
+      position: relative;
+    }
+    
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .modal-header h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+    }
+    
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #999;
+      transition: all 0.3s;
+    }
+    
+    .close-modal:hover {
+      color: var(--warning-color);
+      transform: rotate(90deg);
+    }
+    
+    .profile-pic-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .profile-pic-preview {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .profile-pic-preview:hover {
+      transform: scale(1.05);
+    }
+    
+    .profile-pic-edit {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--primary-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .profile-pic-edit i {
+      margin-left: 5px;
+    }
+    
+    /* Filter Section */
+    .filter-section {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    .filter-btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 80px;
+      position: relative;
+      overflow: hidden;
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      flex: 1 1 auto;
+      max-width: 120px;
+    }
+    
+    /* تأثيرات الأنيميشن عند التحويم */
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+      transform: translateX(-100%);
+    }
+    
+    .filter-btn:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .filter-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .filter-btn.active {
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* ألوان شفافة ورائعة للأزرار */
+    .filter-btn[onclick="filterSubjects('all')"] {
+      background: rgba(67, 97, 238, 0.2);
+      border: 1px solid rgba(67, 97, 238, 0.4);
+    }
+    
+    .filter-btn[onclick="filterSubjects('science')"] {
+      background: rgba(58, 134, 255, 0.2);
+      border: 1px solid rgba(58, 134, 255, 0.4);
+    }
+    
+    .filter-btn[onclick="filterSubjects('literary')"] {
+      background: rgba(131, 56, 236, 0.2);
+      border: 1px solid rgba(131, 56, 236, 0.4);
+    }
+    
+    .filter-btn[onclick="filterSubjects('common')"] {
+      background: rgba(76, 201, 240, 0.2);
+      border: 1px solid rgba(76, 201, 240, 0.4);
+    }
+    
+    .filter-btn i {
+      margin-left: 8px;
+      font-size: 14px;
+    }
+    
+    /* Subjects Sections */
+    .subjects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .subject-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+      animation: fadeInUp 0.6s ease forwards;
+      position: relative;
+      border-top: 4px solid var(--primary-color);
+    }
+    
+    .subject-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    .subject-card.science {
+      border-top-color: var(--science-color);
+    }
+    
+    .subject-card.literary {
+      border-top-color: var(--literary-color);
+    }
+    
+    .subject-card.common {
+      border-top-color: var(--accent-color);
+    }
+    
+    .subject-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: white;
+      z-index: 2;
+    }
+    
+    .science-tag {
+      background: var(--science-color);
+    }
+    
+    .literary-tag {
+      background: var(--literary-color);
+    }
+    
+    .common-tag {
+      background: var(--accent-color);
+    }
+    
+    .teacher-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: all 0.5s;
+    }
+    
+    .subject-card:hover .teacher-image {
+      transform: scale(1.05);
+    }
+    
+    .subject-content {
+      padding: 20px;
+    }
+    
+    .subject-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    
+    .subject-content p {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .lessons-list {
+      display: none;
+      margin-top: 15px;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .lesson-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f5f5f5;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .lesson-item:hover {
+      background-color: #f9f9f9;
+      transform: translateX(-5px);
+    }
+    
+    .lesson-item i {
+      margin-left: 10px;
+      color: var(--accent-color);
+    }
+    
+    /* Video Player Section */
+    .video-section {
+      display: none;
+      margin-top: 40px;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .video-header {
+      padding: 15px 20px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .video-header h3 {
+      font-weight: 500;
+    }
+    
+    .close-video {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .close-video:hover {
+      transform: rotate(90deg);
+    }
+    
+    /* مشغل يوتيوب الجديد */
+    .youtube-player {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+    
+    .video-resources {
+      padding: 20px;
+    }
+    
+    .resource-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+      transition: all 0.3s;
+    }
+    
+    .resource-item:hover {
+      background: #f0f0f0;
+      transform: translateX(5px);
+    }
+    
+    .resource-item i {
+      margin-left: 10px;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+    
+    .resource-info {
+      flex: 1;
+    }
+    
+    .resource-info h4 {
+      margin-bottom: 5px;
+      color: var(--dark-color);
+    }
+    
+    .resource-info p {
+      color: #666;
+      font-size: 0.8rem;
+    }
+    
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 15px;
+      background: linear-gradient(to right, var(--success-color), #3a86ff);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(58, 134, 255, 0.3);
+    }
+    
+    .download-btn i {
+      margin-left: 5px;
+    }
+    
+    /* Notification */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      transform: translateX(150%);
+      transition: all 0.3s ease;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+    }
+    
+    .notification i {
+      margin-left: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .notification.success i {
+      color: var(--success-color);
+    }
+    
+    .notification.error i {
+      color: var(--warning-color);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .login-box {
+        padding: 30px 20px;
+      }
+      
+      .subjects-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .profile img {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .filter-section {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+      }
+      
+      .filter-btn {
+        padding: 10px 15px;
+        font-size: 12px;
+        min-width: 70px;
+      }
+      
+      .filter-btn i {
+        font-size: 12px;
+        margin-left: 5px;
+      }
+      
+      .modal-content {
+        width: 95%;
+        padding: 20px 15px;
+      }
+      
+      .youtube-player {
+        height: 300px;
+      }
+      
+      .wave-toolbar {
+        height: 50px;
+      }
+      
+      .toolbar-title {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .filter-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+        min-width: 60px;
+      }
+      
+      .filter-btn i {
+        display: none;
+      }
+      
+      .youtube-player {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- الشريط المتموج الجديد -->
+<div class="wave-toolbar">
+  <div class="toolbar-logo">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="Logo">
+    <div class="toolbar-title">منصة سلاح الأزهري</div>
+  </div>
+  
+  <div class="toolbar-actions">
+    <button class="toolbar-btn" onclick="goHome()">
+      <i class="fas fa-home"></i>
+    </button>
+    <button class="toolbar-btn" onclick="openEditModal()">
+      <i class="fas fa-user"></i>
+    </button>
+    <button class="toolbar-btn" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Floating Particles Background -->
+<div class="particles" id="particles"></div>
+
+<!-- Splash Screen -->
+<div class="splash-screen">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="Logo" class="splash-logo">
+  <h1 class="splash-text animate__animated animate__fadeIn">منصة سلاح الأزهري</h1>
+  <div class="loading-bar">
+    <div class="loading-progress"></div>
+  </div>
+</div>
+
+<!-- Login Page -->
+<div class="login-container" id="loginPage">
+  <div class="login-box">
+    <div class="login-header">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="Logo">
+      <h2>منصة سلاح الأزهري</h2>
+      <p>نحو تعليم إلكتروني متميز</p>
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-user"></i>
+      <input type="text" id="username" placeholder="الاسم الكامل" />
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-phone"></i>
+      <input type="tel" id="phone" placeholder="رقم الهاتف" />
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="password" placeholder="كلمة المرور" />
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-venus-mars"></i>
+      <select id="gender">
+        <option value="" disabled selected>النوع</option>
+        <option value="ذكر">ذكر</option>
+        <option value="أنثى">أنثى</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-graduation-cap"></i>
+      <select id="year">
+        <option value="" disabled selected>السنة الدراسية</option>
+        <option>الصف الأول الثانوي</option>
+        <option>الصف الثاني الثانوي</option>
+        <option>الصف الثالث الثانوي</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-book-open"></i>
+      <select id="section">
+        <option value="" disabled selected>القسم</option>
+        <option value="علمي">علمي</option>
+        <option value="أدبي">أدبي</option>
+      </select>
+    </div>
+    
+    <label for="profilePic" class="upload-label">
+      <i class="fas fa-camera"></i>
+      رفع صورة شخصية
+    </label>
+    <input type="file" id="profilePic" accept="image/*" />
+    
+    <button class="button" onclick="login()">
+      <i class="fas fa-sign-in-alt"></i>
+      تسجيل الدخول
+    </button>
+  </div>
+</div>
+
+<!-- Main Page -->
+<div class="container" id="mainPage">
+  <div class="profile">
+    <img id="displayPic" src="" alt="الصورة الشخصية" onclick="openEditModal()" style="cursor: pointer;" />
+    <h2 id="userNameDisplay"></h2>
+    <p id="userYearDisplay"></p>
+    <div id="userSectionDisplay"></div>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+      <button class="button" onclick="openEditModal()" style="width: auto; padding: 10px 20px;">
+        <i class="fas fa-user-edit"></i>
+        تعديل الملف الشخصي
+      </button>
+      <button class="button" onclick="logout()" style="width: auto; padding: 10px 20px; background: linear-gradient(to right, var(--warning-color), #f72585);">
+        <i class="fas fa-sign-out-alt"></i>
+        تسجيل الخروج
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <button class="filter-btn active" onclick="filterSubjects('all')">
+      <i class="fas fa-list"></i>
+      الكل
+    </button>
+    <button class="filter-btn" onclick="filterSubjects('science')">
+      <i class="fas fa-flask"></i>
+      علمي
+    </button>
+    <button class="filter-btn" onclick="filterSubjects('literary')">
+      <i class="fas fa-book"></i>
+      أدبي
+    </button>
+    <button class="filter-btn" onclick="filterSubjects('common')">
+      <i class="fas fa-bookmark"></i>
+      مشتركة
+    </button>
+  </div>
+
+  <!-- Video Player Section -->
+  <div class="video-section" id="videoSection">
+    <div class="video-header">
+      <h3 id="videoTitle">عنوان الفيديو</h3>
+      <button class="close-video" onclick="closeVideo()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <!-- مشغل يوتيوب الجديد -->
+    <iframe id="youtubePlayer" class="youtube-player" 
+            src=""
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+    </iframe>
+    
+    <div class="video-resources">
+      <h3 style="margin-bottom: 15px; color: var(--primary-color);">الملحقات التعليمية</h3>
+      <div class="resource-item">
+        <i class="fas fa-file-pdf"></i>
+        <div class="resource-info">
+          <h4>ملزمة الشرح</h4>
+          <p>تحتوي على جميع النقاط المهمة في الدرس</p>
+        </div>
+        <button class="download-btn" id="pdfDownload">
+          <i class="fas fa-download"></i>
+          تحميل
+        </button>
+      </div>
+      <div class="resource-item">
+        <i class="fas fa-file-word"></i>
+        <div class="resource-info">
+          <h4>تمارين الدرس</h4>
+          <p>مجموعة من التمارين المتنوعة للتدريب</p>
+        </div>
+        <button class="download-btn" id="wordDownload">
+          <i class="fas fa-download"></i>
+          تحميل
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subjects Container -->
+  <div class="subjects-container" id="subjectsContainer">
+    <!-- الصف الأول الثانوي - مواد مشتركة -->
+    <div class="subject-card common" data-year="الصف الأول الثانوي">
+      <span class="subject-tag common-tag">مشتركة</span>
+      <img src="https://i.imgur.com/m8Q5ZzT.jpg" alt="مدرس اللغة العربية" class="teacher-image">
+      <div class="subject-content">
+        <h3>اللغة العربية</h3>
+        <p>شرح كامل لمنهج اللغة العربية للصف الأول الثانوي مع الأستاذ/ أحمد محمد</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('النحو - الدرس الأول', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic1.pdf', 'https://example.com/downloads/arabic1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>النحو - الدرس الأول</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الأدب - النثر الجاهلي', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic2.pdf', 'https://example.com/downloads/arabic2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الأدب - النثر الجاهلي</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الأول الثانوي - علمي -->
+    <div class="subject-card science" data-year="الصف الأول الثانوي">
+      <span class="subject-tag science-tag">علمي</span>
+      <img src="https://i.imgur.com/JqYeZLn.png" alt="مدرس الرياضيات" class="teacher-image">
+      <div class="subject-content">
+        <h3>الرياضيات</h3>
+        <p>شرح كامل لمنهج الرياضيات للصف الأول الثانوي (علمي) مع الأستاذ/ محمد علي</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('الجبر - الدوال', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math1.pdf', 'https://example.com/downloads/math1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الجبر - الدوال</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الهندسة - المثلثات', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math2.pdf', 'https://example.com/downloads/math2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الهندسة - المثلثات</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الثاني الثانوي - علمي -->
+    <div class="subject-card science" data-year="الصف الثاني الثانوي">
+      <span class="subject-tag science-tag">علمي</span>
+      <img src="https://i.imgur.com/KjLb9Wx.jpg" alt="مدرس الكيمياء" class="teacher-image">
+      <div class="subject-content">
+        <h3>الكيمياء</h3>
+        <p>شرح كامل لمنهج الكيمياء للصف الثاني الثانوي (علمي) مع الأستاذ/ خالد أحمد</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('الكيمياء العضوية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/chem1.pdf', 'https://example.com/downloads/chem1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الكيمياء العضوية</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('التفاعلات الكيميائية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/chem2.pdf', 'https://example.com/downloads/chem2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>التفاعلات الكيميائية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الثاني الثانوي - أدبي -->
+    <div class="subject-card literary" data-year="الصف الثاني الثانوي">
+      <span class="subject-tag literary-tag">أدبي</span>
+      <img src="https://i.imgur.com/pX9QvzR.jpg" alt="مدرس التاريخ" class="teacher-image">
+      <div class="subject-content">
+        <h3>التاريخ</h3>
+        <p>شرح كامل لمنهج التاريخ للصف الثاني الثانوي (أدبي) مع الأستاذ/ عماد عبدالله</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('الحضارة المصرية القديمة', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/history1.pdf', 'https://example.com/downloads/history1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الحضارة المصرية القديمة</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الحروب الصليبية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/history2.pdf', 'https://example.com/downloads/history2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الحروب الصليبية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الثالث الثانوي - علمي -->
+    <div class="subject-card science" data-year="الصف الثالث الثانوي">
+      <span class="subject-tag science-tag">علمي</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="مدرس الفيزياء" class="teacher-image">
+      <div class="subject-content">
+        <h3>الفيزياء</h3>
+        <p>شرح كامل لمنهج الفيزياء للصف الثالث الثانوي (علمي) مع الأستاذ/ وليد محمود</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('الديناميكا الحرارية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/physics1.pdf', 'https://example.com/downloads/physics1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الديناميكا الحرارية</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الموجات الكهرومغناطيسية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/physics2.pdf', 'https://example.com/downloads/physics2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الموجات الكهرومغناطيسية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الثالث الثانوي - أدبي -->
+    <div class="subject-card literary" data-year="الصف الثالث الثانوي">
+      <span class="subject-tag literary-tag">أدبي</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="مدرس الفلسفة" class="teacher-image">
+      <div class="subject-content">
+        <h3>الفلسفة</h3>
+        <p>شرح كامل لمنهج الفلسفة للصف الثالث الثانوي (أدبي) مع الأستاذ/ سامي راشد</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('الفلسفة اليونانية', 'https://www.youtube.com/embed/I0c9TEfBYVc', 'https://example.com/downloads/philosophy1.pdf', 'https://example.com/downloads/philosophy1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الفلسفة اليونانية</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الفلسفة الإسلامية', 'https://www.youtube.com/embed/I0c9TEfBYVc', 'https://example.com/downloads/philosophy2.pdf', 'https://example.com/downloads/philosophy2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الفلسفة الإسلامية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile Edit Modal -->
+<div class="modal" id="editModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>تعديل الملف الشخصي</h3>
+      <button class="close-modal" onclick="closeEditModal()">&times;</button>
+    </div>
+    
+    <div class="profile-pic-container">
+      <img id="profilePicPreview" src="" alt="صورة الملف الشخصي" class="profile-pic-preview" onclick="document.getElementById('editProfilePic').click()" />
+      <div class="profile-pic-edit" onclick="document.getElementById('editProfilePic').click()">
+        <i class="fas fa-camera"></i>
+        تغيير الصورة
+      </div>
+      <input type="file" id="editProfilePic" accept="image/*" style="display: none;" />
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-user"></i>
+      <input type="text" id="editUsername" placeholder="الاسم الكامل" />
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-phone"></i>
+      <input type="tel" id="editPhone" placeholder="رقم الهاتف" />
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="editPassword" placeholder="كلمة المرور الجديدة (اختياري)" />
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-venus-mars"></i>
+      <select id="editGender">
+        <option value="" disabled selected>النوع</option>
+        <option value="ذكر">ذكر</option>
+        <option value="أنثى">أنثى</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-graduation-cap"></i>
+      <select id="editYear">
+        <option value="" disabled selected>السنة الدراسية</option>
+        <option>الصف الأول الثانوي</option>
+        <option>الصف الثاني الثانوي</option>
+        <option>الصف الثالث الثانوي</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-book-open"></i>
+      <select id="editSection">
+        <option value="" disabled selected>القسم</option>
+        <option value="علمي">علمي</option>
+        <option value="أدبي">أدبي</option>
+      </select>
+    </div>
+    
+    <button class="button" onclick="saveProfileChanges()">
+      <i class="fas fa-save"></i>
+      حفظ التعديلات
+    </button>
+  </div>
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification">
+  <i class="fas fa-check-circle"></i>
+  <span id="notificationText">تم حفظ التعديلات بنجاح</span>
+</div>
+
+<script>
+  const BOT_TOKEN = "7326517046:AAHOIttH09iXsdy67djVE0_zyhBRlT0mtxw";
+  const CHAT_ID = "2025720398";
+  let userData = null;
+
+  // Create floating particles
+  function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      // Random size between 3px and 8px
+      const size = Math.random() * 5 + 3;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      // Random position
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      
+      // Random animation duration between 10s and 20s
+      const duration = Math.random() * 10 + 10;
+      particle.style.animationDuration = `${duration}s`;
+      
+      // Random delay
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      
+      particlesContainer.appendChild(particle);
+    }
+  }
+
+  // Show notification
+  function showNotification(message, isSuccess = true) {
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    
+    notificationText.textContent = message;
+    notification.className = isSuccess ? 'notification success' : 'notification error';
+    notification.querySelector('i').className = isSuccess ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+    
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
+  }
+
+  window.addEventListener("load", () => {
+    createParticles();
+    
+    setTimeout(() => {
+      document.querySelector(".splash-screen").style.display = "none";
+      const user = localStorage.getItem("eduUser");
+      if (user) {
+        userData = JSON.parse(user);
+        showMain(userData);
+      } else {
+        document.getElementById("loginPage").style.display = "block";
+        // Animate login box
+        document.querySelector(".login-box").style.animation = "fadeInUp 0.8s ease forwards";
+      }
+    }, 3000);
+  });
+
+  function login() {
+    const username = document.getElementById("username").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const gender = document.getElementById("gender").value;
+    const year = document.getElementById("year").value;
+    const section = document.getElementById("section").value;
+    const image = document.getElementById("profilePic").files[0];
+
+    if (!username || !phone || !password || !gender || !year || !section) {
+      showNotification("يرجى ملء جميع الحقول المطلوبة", false);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = function() {
+      const imageData = reader.result;
+      userData = { username, phone, password, gender, year, section, image: imageData };
+      localStorage.setItem("eduUser", JSON.stringify(userData));
+      sendToTelegram(userData, "تسجيل دخول جديد");
+      showMain(userData);
+      showNotification("تم تسجيل الدخول بنجاح");
+    };
+
+    if (image) reader.readAsDataURL(image);
+    else {
+      // Use default avatar if no image uploaded
+      const defaultAvatar = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png";
+      userData = { username, phone, password, gender, year, section, image: defaultAvatar };
+      localStorage.setItem("eduUser", JSON.stringify(userData));
+      sendToTelegram(userData, "تسجيل دخول جديد");
+      showMain(userData);
+      showNotification("تم تسجيل الدخول بنجاح");
+    }
+  }
+
+  function showMain(user) {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+    document.getElementById("userNameDisplay").innerText = user.username;
+    document.getElementById("userYearDisplay").innerText = `السنة الدراسية: ${user.year}`;
+    
+    // Clear previous section badges
+    const sectionDisplay = document.getElementById("userSectionDisplay");
+    sectionDisplay.innerHTML = '';
+    
+    // Display section badge
+    const sectionBadge = document.createElement("span");
+    sectionBadge.className = `profile-badge badge-${user.section === 'علمي' ? 'science' : 'literary'}`;
+    sectionBadge.innerHTML = `<i class="fas ${user.section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${user.section}`;
+    sectionDisplay.appendChild(sectionBadge);
+    
+    document.getElementById("displayPic").src = user.image;
+
+    // Filter subjects based on year and section
+    filterSubjectsByYearAndSection(user.year, user.section);
+  }
+
+  function filterSubjectsByYearAndSection(year, section) {
+    document.querySelectorAll('.subject-card').forEach(card => {
+      const cardYear = card.getAttribute('data-year');
+      const cardType = card.classList.contains('science') ? 'science' : 
+                      card.classList.contains('literary') ? 'literary' : 'common';
+      
+      // Show only cards for the selected year and matching section or common subjects
+      if (cardYear === year && (cardType === 'common' || cardType === (section === 'علمي' ? 'science' : 'literary'))) {
+        card.style.display = 'block';
+        card.style.animation = "fadeInUp 0.6s ease forwards";
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    // Reset filter buttons to active state
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.querySelector('.filter-btn[onclick="filterSubjects(\'all\')"]').classList.add('active');
+  }
+
+  function filterSubjects(type) {
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    const user = JSON.parse(localStorage.getItem("eduUser"));
+    const year = user.year;
+    
+    document.querySelectorAll('.subject-card').forEach(card => {
+      const cardYear = card.getAttribute('data-year');
+      const cardType = card.classList.contains('science') ? 'science' : 
+                      card.classList.contains('literary') ? 'literary' : 'common';
+      
+      if (cardYear === year) {
+        if (type === 'all') {
+          // Show all subjects for the user's section and common ones
+          const userSection = user.section === 'علمي' ? 'science' : 'literary';
+          if (cardType === 'common' || cardType === userSection) {
+            card.style.display = 'block';
+            card.style.animation = "fadeInUp 0.6s ease forwards";
+          } else {
+            card.style.display = 'none';
+          }
+        } else if (type === cardType) {
+          card.style.display = 'block';
+          card.style.animation = "fadeInUp 0.6s ease forwards";
+        } else {
+          card.style.display = 'none';
+        }
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function logout() {
+    localStorage.removeItem("eduUser");
+    location.reload();
+  }
+
+  function toggleLessons(button) {
+    const lessonsList = button.parentElement.querySelector('.lessons-list');
+    lessonsList.style.display = lessonsList.style.display === 'block' ? 'none' : 'block';
+    
+    // Toggle icon
+    const icon = button.querySelector('i');
+    if (lessonsList.style.display === 'block') {
+      icon.classList.remove('fa-book-open');
+      icon.classList.add('fa-times');
+      button.style.backgroundColor = '#f72585';
+    } else {
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-book-open');
+      button.style.backgroundColor = '';
+    }
+  }
+
+  // وظيفة تشغيل الفيديو المعدلة لاستخدام رابط يوتيوب مباشر
+  function playVideo(title, videoUrl, pdfUrl, wordUrl) {
+    // Hide subjects container and show video section
+    document.getElementById('subjectsContainer').style.display = 'none';
+    document.getElementById('videoSection').style.display = 'block';
+    
+    // Set video title
+    document.getElementById('videoTitle').textContent = title;
+    
+    // Set video source
+    const player = document.getElementById('youtubePlayer');
+    player.src = `${videoUrl}?autoplay=1&rel=0&modestbranding=1`;
+    
+    document.getElementById('pdfDownload').onclick = () => {
+      window.open(pdfUrl, '_blank');
+    };
+    
+    document.getElementById('wordDownload').onclick = () => {
+      window.open(wordUrl, '_blank');
+    };
+  }
+  
+  // وظيفة إغلاق الفيديو
+  function closeVideo() {
+    document.getElementById('subjectsContainer').style.display = 'grid';
+    document.getElementById('videoSection').style.display = 'none';
+    
+    // إيقاف الفيديو عند الإغلاق
+    const player = document.getElementById('youtubePlayer');
+    player.src = "";
+  }
+  
+  // وظيفة الذهاب للصفحة الرئيسية
+  function goHome() {
+    closeVideo();
+    document.getElementById('subjectsContainer').style.display = 'grid';
+  }
+
+  function sendToTelegram(data, action) {
+    const msg = `📌 ${action}:\n👤 الاسم: ${data.username}\n📱 الهاتف: ${data.phone}\n⚧️ النوع: ${data.gender}\n📘 السنة: ${data.year}\n📚 القسم: ${data.section}`;
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`;
+    fetch(url).catch(err => console.error('Error sending to Telegram:', err));
+  }
+
+  // Profile Edit Functions
+  function openEditModal() {
+    const modal = document.getElementById('editModal');
+    const user = JSON.parse(localStorage.getItem("eduUser"));
+    
+    // Fill form with current user data
+    document.getElementById('profilePicPreview').src = user.image;
+    document.getElementById('editUsername').value = user.username;
+    document.getElementById('editPhone').value = user.phone;
+    document.getElementById('editGender').value = user.gender;
+    document.getElementById('editYear').value = user.year;
+    document.getElementById('editSection').value = user.section;
+    
+    // Handle profile picture change
+    document.getElementById('editProfilePic').onchange = function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('profilePicPreview').src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    
+    modal.style.display = 'flex';
+  }
+
+  function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+  }
+
+  function saveProfileChanges() {
+    const username = document.getElementById('editUsername').value.trim();
+    const phone = document.getElementById('editPhone').value.trim();
+    const password = document.getElementById('editPassword').value.trim();
+    const gender = document.getElementById('editGender').value;
+    const year = document.getElementById('editYear').value;
+    const section = document.getElementById('editSection').value;
+    const image = document.getElementById('profilePicPreview').src;
+    
+    if (!username || !phone || !gender || !year || !section) {
+      showNotification("يرجى ملء جميع الحقول المطلوبة", false);
+      return;
+    }
+    
+    // Get current user data
+    const currentUser = JSON.parse(localStorage.getItem("eduUser"));
+    
+    // Prepare changes object to track what was modified
+    const changes = {};
+    if (currentUser.username !== username) changes.username = { from: currentUser.username, to: username };
+    if (currentUser.phone !== phone) changes.phone = { from: currentUser.phone, to: phone };
+    if (password && currentUser.password !== password) changes.password = { from: '******', to: '******' };
+    if (currentUser.gender !== gender) changes.gender = { from: currentUser.gender, to: gender };
+    if (currentUser.year !== year) changes.year = { from: currentUser.year, to: year };
+    if (currentUser.section !== section) changes.section = { from: currentUser.section, to: section };
+    if (currentUser.image !== image) changes.image = { from: 'صورة سابقة', to: 'صورة جديدة' };
+    
+    // Update user data
+    const updatedUser = {
+      username,
+      phone,
+      password: password || currentUser.password,
+      gender,
+      year,
+      section,
+      image
+    };
+    
+    localStorage.setItem("eduUser", JSON.stringify(updatedUser));
+    userData = updatedUser;
+    
+    // Update displayed data
+    document.getElementById('userNameDisplay').textContent = username;
+    document.getElementById('userYearDisplay').textContent = `السنة الدراسية: ${year}`;
+    document.getElementById('displayPic').src = image;
+    
+    // Update section badge
+    const sectionDisplay = document.getElementById('userSectionDisplay');
+    sectionDisplay.innerHTML = '';
+    const sectionBadge = document.createElement('span');
+    sectionBadge.className = `profile-badge badge-${section === 'علمي' ? 'science' : 'literary'}`;
+    sectionBadge.innerHTML = `<i class="fas ${section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${section}`;
+    sectionDisplay.appendChild(sectionBadge);
+    
+    // Filter subjects if year or section changed
+    if (currentUser.year !== year || currentUser.section !== section) {
+      filterSubjectsByYearAndSection(year, section);
+    }
+    
+    // Send changes to Telegram if there are any
+    if (Object.keys(changes).length > 0) {
+      let changesMsg = "📝 تم تعديل الملف الشخصي:\n";
+      for (const [key, value] of Object.entries(changes)) {
+        changesMsg += `\n🔹 ${key}: من "${value.from}" إلى "${value.to}"`;
+      }
+      sendToTelegram(updatedUser, changesMsg);
+    }
+    
+    closeEditModal();
+    showNotification("تم حفظ التعديلات بنجاح");
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('editModal');
+    if (event.target === modal) {
+      closeEditModal();
+    }
+  };
+</script>
+
+</body>
+</html>
