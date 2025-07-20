@@ -20,6 +20,20 @@
       --warning-color: #f72585;
       --science-color: #3a86ff;
       --literary-color: #8338ec;
+      --prep-color: #4cc9f0;
+      --bg-color: #f5f7fa;
+      --text-color: #212529;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(0,0,0,0.1);
+    }
+    
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #f8f9fa;
+      --card-bg: #1e1e1e;
+      --shadow-color: rgba(0,0,0,0.3);
+      --light-color: #2d2d2d;
+      --dark-color: #f8f9fa;
     }
     
     * {
@@ -30,10 +44,11 @@
     }
     
     body {
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      background: linear-gradient(135deg, var(--bg-color) 0%, var(--light-color) 100%);
       min-height: 100vh;
-      color: var(--dark-color);
+      color: var(--text-color);
       padding-top: 60px;
+      transition: all 0.3s ease;
     }
     
     /* شريط الأدوات المتموج الجديد */
@@ -49,7 +64,7 @@
       justify-content: space-between;
       padding: 0 20px;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px var(--shadow-color);
     }
     
     .wave-toolbar::before {
@@ -215,10 +230,10 @@
     .login-box {
       max-width: 480px;
       margin: 40px auto;
-      background: #ffffff;
+      background: var(--card-bg);
       padding: 40px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px var(--shadow-color);
       transform: translateY(20px);
       opacity: 0;
       animation: fadeInUp 0.8s ease forwards;
@@ -297,6 +312,8 @@
       border-radius: 10px;
       font-size: 16px;
       transition: all 0.3s;
+      background-color: var(--card-bg);
+      color: var(--text-color);
     }
     
     .login-box input:focus,
@@ -440,7 +457,7 @@
     }
     
     .profile h2 {
-      color: var(--dark-color);
+      color: var(--text-color);
       margin-bottom: 5px;
       font-size: 1.5rem;
     }
@@ -468,6 +485,10 @@
       background: var(--literary-color);
     }
     
+    .badge-prep {
+      background: var(--prep-color);
+    }
+    
     /* Profile Edit Modal */
     .modal {
       display: none;
@@ -483,7 +504,7 @@
     }
     
     .modal-content {
-      background: white;
+      background: var(--card-bg);
       border-radius: 15px;
       width: 90%;
       max-width: 500px;
@@ -579,6 +600,7 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
     
+    /* Modern Button Styles */
     .filter-btn {
       padding: 12px 20px;
       border-radius: 8px;
@@ -598,6 +620,8 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
       flex: 1 1 auto;
       max-width: 120px;
+      background: rgba(67, 97, 238, 0.2);
+      border: 1px solid rgba(67, 97, 238, 0.4);
     }
     
     /* تأثيرات الأنيميشن عند التحويم */
@@ -649,6 +673,11 @@
       border: 1px solid rgba(76, 201, 240, 0.4);
     }
     
+    .filter-btn[onclick="filterSubjects('prep')"] {
+      background: rgba(76, 201, 240, 0.2);
+      border: 1px solid rgba(76, 201, 240, 0.4);
+    }
+    
     .filter-btn i {
       margin-left: 8px;
       font-size: 14px;
@@ -663,7 +692,7 @@
     }
     
     .subject-card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
@@ -690,6 +719,10 @@
       border-top-color: var(--accent-color);
     }
     
+    .subject-card.prep {
+      border-top-color: var(--prep-color);
+    }
+    
     .subject-tag {
       position: absolute;
       top: 15px;
@@ -712,6 +745,10 @@
     
     .common-tag {
       background: var(--accent-color);
+    }
+    
+    .prep-tag {
+      background: var(--prep-color);
     }
     
     .teacher-image {
@@ -773,7 +810,7 @@
     .video-section {
       display: none;
       margin-top: 40px;
-      background: white;
+      background: var(--card-bg);
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -880,7 +917,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: white;
+      background: var(--card-bg);
       padding: 15px 20px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -999,7 +1036,7 @@
 <div class="wave-toolbar">
   <div class="toolbar-logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="Logo">
-    <div class="toolbar-title">منصة سلاح الأزهري</div>
+    <div class="toolbar-title"> سلاح الأزهري</div>
   </div>
   
   <div class="toolbar-actions">
@@ -1008,6 +1045,9 @@
     </button>
     <button class="toolbar-btn" onclick="openEditModal()">
       <i class="fas fa-user"></i>
+    </button>
+    <button class="toolbar-btn" id="darkModeToggle">
+      <i class="fas fa-moon"></i>
     </button>
     <button class="toolbar-btn" onclick="logout()">
       <i class="fas fa-sign-out-alt"></i>
@@ -1062,15 +1102,18 @@
     
     <div class="input-group">
       <i class="fas fa-graduation-cap"></i>
-      <select id="year">
+      <select id="year" onchange="toggleSectionVisibility()">
         <option value="" disabled selected>السنة الدراسية</option>
+        <option>الصف الأول الإعدادي</option>
+        <option>الصف الثاني الإعدادي</option>
+        <option>الصف الثالث الإعدادي</option>
         <option>الصف الأول الثانوي</option>
         <option>الصف الثاني الثانوي</option>
         <option>الصف الثالث الثانوي</option>
       </select>
     </div>
     
-    <div class="input-group">
+    <div class="input-group" id="sectionGroup">
       <i class="fas fa-book-open"></i>
       <select id="section">
         <option value="" disabled selected>القسم</option>
@@ -1129,6 +1172,10 @@
       <i class="fas fa-bookmark"></i>
       مشتركة
     </button>
+    <button class="filter-btn" onclick="filterSubjects('prep')">
+      <i class="fas fa-school"></i>
+      إعدادي
+    </button>
   </div>
 
   <!-- Video Player Section -->
@@ -1177,6 +1224,110 @@
 
   <!-- Subjects Container -->
   <div class="subjects-container" id="subjectsContainer">
+    <!-- الصف الأول الإعدادي -->
+    <div class="subject-card prep" data-year="الصف الأول الإعدادي">
+      <span class="subject-tag prep-tag">إعدادي</span>
+      <img src="https://i.imgur.com/m8Q5ZzT.jpg" alt="مدرس اللغة العربية" class="teacher-image">
+      <div class="subject-content">
+        <h3>اللغة العربية</h3>
+        <p>شرح كامل لمنهج اللغة العربية للصف الأول الإعدادي مع الأستاذ/ أحمد محمد</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('النحو - الدرس الأول', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic1.pdf', 'https://example.com/downloads/arabic1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>النحو - الدرس الأول</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الأدب - النثر الجاهلي', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic2.pdf', 'https://example.com/downloads/arabic2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الأدب - النثر الجاهلي</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الأول الإعدادي -->
+    <div class="subject-card prep" data-year="الصف الأول الإعدادي">
+      <span class="subject-tag prep-tag">إعدادي</span>
+      <img src="https://i.imgur.com/JqYeZLn.png" alt="مدرس الرياضيات" class="teacher-image">
+      <div class="subject-content">
+        <h3>الرياضيات</h3>
+        <p>شرح كامل لمنهج الرياضيات للصف الأول الإعدادي مع الأستاذ/ محمد علي</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('الجبر - الدوال', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math1.pdf', 'https://example.com/downloads/math1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الجبر - الدوال</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الهندسة - المثلثات', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math2.pdf', 'https://example.com/downloads/math2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الهندسة - المثلثات</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الثاني الإعدادي -->
+    <div class="subject-card prep" data-year="الصف الثاني الإعدادي">
+      <span class="subject-tag prep-tag">إعدادي</span>
+      <img src="https://i.imgur.com/KjLb9Wx.jpg" alt="مدرس العلوم" class="teacher-image">
+      <div class="subject-content">
+        <h3>العلوم</h3>
+        <p>شرح كامل لمنهج العلوم للصف الثاني الإعدادي مع الأستاذ/ خالد أحمد</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('الكيمياء الأساسية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/science1.pdf', 'https://example.com/downloads/science1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الكيمياء الأساسية</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('الفيزياء الأساسية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/science2.pdf', 'https://example.com/downloads/science2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>الفيزياء الأساسية</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الصف الثالث الإعدادي -->
+    <div class="subject-card prep" data-year="الصف الثالث الإعدادي">
+      <span class="subject-tag prep-tag">إعدادي</span>
+      <img src="https://i.imgur.com/pX9QvzR.jpg" alt="مدرس الدراسات الاجتماعية" class="teacher-image">
+      <div class="subject-content">
+        <h3>الدراسات الاجتماعية</h3>
+        <p>شرح كامل لمنهج الدراسات الاجتماعية للصف الثالث الإعدادي مع الأستاذ/ عماد عبدالله</p>
+        <button class="button" onclick="toggleLessons(this)">
+          <i class="fas fa-book-open"></i>
+          عرض الدروس
+        </button>
+        
+        <div class="lessons-list">
+          <div class="lesson-item" onclick="playVideo('جغرافيا مصر', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/social1.pdf', 'https://example.com/downloads/social1.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>جغرافيا مصر</span>
+          </div>
+          
+          <div class="lesson-item" onclick="playVideo('تاريخ مصر الحديث', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/social2.pdf', 'https://example.com/downloads/social2.docx')">
+            <i class="fas fa-play-circle"></i>
+            <span>تاريخ مصر الحديث</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- الصف الأول الثانوي - مواد مشتركة -->
     <div class="subject-card common" data-year="الصف الأول الثانوي">
       <span class="subject-tag common-tag">مشتركة</span>
@@ -1378,15 +1529,18 @@
     
     <div class="input-group">
       <i class="fas fa-graduation-cap"></i>
-      <select id="editYear">
+      <select id="editYear" onchange="toggleEditSectionVisibility()">
         <option value="" disabled selected>السنة الدراسية</option>
+        <option>الصف الأول الإعدادي</option>
+        <option>الصف الثاني الإعدادي</option>
+        <option>الصف الثالث الإعدادي</option>
         <option>الصف الأول الثانوي</option>
         <option>الصف الثاني الثانوي</option>
         <option>الصف الثالث الثانوي</option>
       </select>
     </div>
     
-    <div class="input-group">
+    <div class="input-group" id="editSectionGroup">
       <i class="fas fa-book-open"></i>
       <select id="editSection">
         <option value="" disabled selected>القسم</option>
@@ -1412,6 +1566,56 @@
   const BOT_TOKEN = "7326517046:AAHOIttH09iXsdy67djVE0_zyhBRlT0mtxw";
   const CHAT_ID = "2025720398";
   let userData = null;
+
+  // Dark Mode Toggle
+  document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+    
+    // Change icon
+    const icon = this.querySelector('i');
+    if (isDarkMode) {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    } else {
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+    }
+  });
+
+  // Check for saved dark mode preference
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('darkModeToggle').querySelector('i').classList.remove('fa-moon');
+    document.getElementById('darkModeToggle').querySelector('i').classList.add('fa-sun');
+  }
+
+  // Toggle section visibility based on selected year
+  function toggleSectionVisibility() {
+    const yearSelect = document.getElementById('year');
+    const sectionGroup = document.getElementById('sectionGroup');
+    
+    if (yearSelect.value.includes('الإعدادي')) {
+      sectionGroup.style.display = 'none';
+      document.getElementById('section').value = '';
+    } else {
+      sectionGroup.style.display = 'block';
+    }
+  }
+
+  // Toggle section visibility in edit modal
+  function toggleEditSectionVisibility() {
+    const yearSelect = document.getElementById('editYear');
+    const sectionGroup = document.getElementById('editSectionGroup');
+    
+    if (yearSelect.value.includes('الإعدادي')) {
+      sectionGroup.style.display = 'none';
+      document.getElementById('editSection').value = '';
+    } else {
+      sectionGroup.style.display = 'block';
+    }
+  }
 
   // Create floating particles
   function createParticles() {
@@ -1484,8 +1688,14 @@
     const section = document.getElementById("section").value;
     const image = document.getElementById("profilePic").files[0];
 
-    if (!username || !phone || !password || !gender || !year || !section) {
+    if (!username || !phone || !password || !gender || !year) {
       showNotification("يرجى ملء جميع الحقول المطلوبة", false);
+      return;
+    }
+
+    // Only require section for secondary years
+    if (!year.includes('الإعدادي') && !section) {
+      showNotification("يرجى اختيار القسم", false);
       return;
     }
 
@@ -1521,11 +1731,18 @@
     const sectionDisplay = document.getElementById("userSectionDisplay");
     sectionDisplay.innerHTML = '';
     
-    // Display section badge
-    const sectionBadge = document.createElement("span");
-    sectionBadge.className = `profile-badge badge-${user.section === 'علمي' ? 'science' : 'literary'}`;
-    sectionBadge.innerHTML = `<i class="fas ${user.section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${user.section}`;
-    sectionDisplay.appendChild(sectionBadge);
+    // Display section badge if not preparatory
+    if (!user.year.includes('الإعدادي')) {
+      const sectionBadge = document.createElement("span");
+      sectionBadge.className = `profile-badge badge-${user.section === 'علمي' ? 'science' : 'literary'}`;
+      sectionBadge.innerHTML = `<i class="fas ${user.section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${user.section}`;
+      sectionDisplay.appendChild(sectionBadge);
+    } else {
+      const prepBadge = document.createElement("span");
+      prepBadge.className = `profile-badge badge-prep`;
+      prepBadge.innerHTML = `<i class="fas fa-school"></i> إعدادي`;
+      sectionDisplay.appendChild(prepBadge);
+    }
     
     document.getElementById("displayPic").src = user.image;
 
@@ -1537,10 +1754,14 @@
     document.querySelectorAll('.subject-card').forEach(card => {
       const cardYear = card.getAttribute('data-year');
       const cardType = card.classList.contains('science') ? 'science' : 
-                      card.classList.contains('literary') ? 'literary' : 'common';
+                      card.classList.contains('literary') ? 'literary' : 
+                      card.classList.contains('prep') ? 'prep' : 'common';
       
       // Show only cards for the selected year and matching section or common subjects
-      if (cardYear === year && (cardType === 'common' || cardType === (section === 'علمي' ? 'science' : 'literary'))) {
+      if (cardYear === year && 
+          (cardType === 'common' || 
+           cardType === 'prep' ||
+           cardType === (section === 'علمي' ? 'science' : 'literary'))) {
         card.style.display = 'block';
         card.style.animation = "fadeInUp 0.6s ease forwards";
       } else {
@@ -1564,22 +1785,36 @@
     
     const user = JSON.parse(localStorage.getItem("eduUser"));
     const year = user.year;
+    const isPrep = year.includes('الإعدادي');
     
     document.querySelectorAll('.subject-card').forEach(card => {
       const cardYear = card.getAttribute('data-year');
       const cardType = card.classList.contains('science') ? 'science' : 
-                      card.classList.contains('literary') ? 'literary' : 'common';
+                      card.classList.contains('literary') ? 'literary' : 
+                      card.classList.contains('prep') ? 'prep' : 'common';
       
       if (cardYear === year) {
         if (type === 'all') {
           // Show all subjects for the user's section and common ones
-          const userSection = user.section === 'علمي' ? 'science' : 'literary';
-          if (cardType === 'common' || cardType === userSection) {
-            card.style.display = 'block';
-            card.style.animation = "fadeInUp 0.6s ease forwards";
+          if (isPrep) {
+            if (cardType === 'prep' || cardType === 'common') {
+              card.style.display = 'block';
+              card.style.animation = "fadeInUp 0.6s ease forwards";
+            } else {
+              card.style.display = 'none';
+            }
           } else {
-            card.style.display = 'none';
+            const userSection = user.section === 'علمي' ? 'science' : 'literary';
+            if (cardType === 'common' || cardType === userSection) {
+              card.style.display = 'block';
+              card.style.animation = "fadeInUp 0.6s ease forwards";
+            } else {
+              card.style.display = 'none';
+            }
           }
+        } else if (type === 'prep' && cardType === 'prep') {
+          card.style.display = 'block';
+          card.style.animation = "fadeInUp 0.6s ease forwards";
         } else if (type === cardType) {
           card.style.display = 'block';
           card.style.animation = "fadeInUp 0.6s ease forwards";
@@ -1653,7 +1888,7 @@
   }
 
   function sendToTelegram(data, action) {
-    const msg = `📌 ${action}:\n👤 الاسم: ${data.username}\n📱 الهاتف: ${data.phone}\n⚧️ النوع: ${data.gender}\n📘 السنة: ${data.year}\n📚 القسم: ${data.section}`;
+    const msg = `📌 ${action}:\n👤 الاسم: ${data.username}\n📱 الهاتف: ${data.phone}\n⚧️ النوع: ${data.gender}\n📘 السنة: ${data.year}\n📚 القسم: ${data.section || 'إعدادي'}`;
     const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`;
     fetch(url).catch(err => console.error('Error sending to Telegram:', err));
   }
@@ -1669,7 +1904,10 @@
     document.getElementById('editPhone').value = user.phone;
     document.getElementById('editGender').value = user.gender;
     document.getElementById('editYear').value = user.year;
-    document.getElementById('editSection').value = user.section;
+    document.getElementById('editSection').value = user.section || '';
+    
+    // Handle section visibility
+    toggleEditSectionVisibility();
     
     // Handle profile picture change
     document.getElementById('editProfilePic').onchange = function(e) {
@@ -1699,8 +1937,14 @@
     const section = document.getElementById('editSection').value;
     const image = document.getElementById('profilePicPreview').src;
     
-    if (!username || !phone || !gender || !year || !section) {
+    if (!username || !phone || !gender || !year) {
       showNotification("يرجى ملء جميع الحقول المطلوبة", false);
+      return;
+    }
+    
+    // Only require section for secondary years
+    if (!year.includes('الإعدادي') && !section) {
+      showNotification("يرجى اختيار القسم", false);
       return;
     }
     
@@ -1739,10 +1983,18 @@
     // Update section badge
     const sectionDisplay = document.getElementById('userSectionDisplay');
     sectionDisplay.innerHTML = '';
-    const sectionBadge = document.createElement('span');
-    sectionBadge.className = `profile-badge badge-${section === 'علمي' ? 'science' : 'literary'}`;
-    sectionBadge.innerHTML = `<i class="fas ${section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${section}`;
-    sectionDisplay.appendChild(sectionBadge);
+    
+    if (year.includes('الإعدادي')) {
+      const prepBadge = document.createElement('span');
+      prepBadge.className = `profile-badge badge-prep`;
+      prepBadge.innerHTML = `<i class="fas fa-school"></i> إعدادي`;
+      sectionDisplay.appendChild(prepBadge);
+    } else {
+      const sectionBadge = document.createElement('span');
+      sectionBadge.className = `profile-badge badge-${section === 'علمي' ? 'science' : 'literary'}`;
+      sectionBadge.innerHTML = `<i class="fas ${section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${section}`;
+      sectionDisplay.appendChild(sectionBadge);
+    }
     
     // Filter subjects if year or section changed
     if (currentUser.year !== year || currentUser.section !== section) {
