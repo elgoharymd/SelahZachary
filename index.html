@@ -21,10 +21,14 @@
       --science-color: #3a86ff;
       --literary-color: #8338ec;
       --prep-color: #4cc9f0;
+      --settings-color: #7209b7;
       --bg-color: #f5f7fa;
       --text-color: #212529;
       --card-bg: #ffffff;
       --shadow-color: rgba(0,0,0,0.1);
+      --theme-color-1: #4361ee;
+      --theme-color-2: #3a0ca3;
+      --theme-color-3: #f72585;
     }
     
     .dark-mode {
@@ -36,11 +40,35 @@
       --dark-color: #f8f9fa;
     }
     
+    .theme-1 {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --accent-color: #4895ef;
+    }
+    
+    .theme-2 {
+      --primary-color: #3a0ca3;
+      --secondary-color: #480ca8;
+      --accent-color: #560bad;
+    }
+    
+    .theme-3 {
+      --primary-color: #f72585;
+      --secondary-color: #b5179e;
+      --accent-color: #7209b7;
+    }
+    
     * {
       box-sizing: border-box;
       font-family: 'Tajawal', sans-serif;
       margin: 0;
       padding: 0;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     
     body {
@@ -89,6 +117,7 @@
     .toolbar-logo {
       display: flex;
       align-items: center;
+      cursor: pointer;
     }
     
     .toolbar-logo img {
@@ -590,6 +619,10 @@
       background: var(--prep-color);
     }
     
+    .badge-settings {
+      background: var(--settings-color);
+    }
+    
     /* Profile Edit Modal */
     .modal {
       display: none;
@@ -695,10 +728,6 @@
       color: var(--secondary-color);
     }
     
-    .profile-pic-edit i {
-      margin-left: 5px;
-    }
-    
     /* Filter Section */
     .filter-section {
       display: flex;
@@ -745,7 +774,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: all 0.5s ease;
       transform: translateX(-100%);
     }
@@ -967,6 +996,139 @@
       border: none;
     }
     
+    /* مشغل الفيديو الاحترافي */
+    .pro-video-container {
+      width: 100%;
+      position: relative;
+      padding-bottom: 56.25%; /* نسبة 16:9 */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    
+    .pro-video-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    /* أنماط مختلفة لأشرطة التحكم في الفيديو */
+    /* النمط الأول - كلاسيكي */
+    .video-controls.classic {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+    }
+    
+    /* النمط الثاني - مدمج */
+    .video-controls.minimal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .pro-video-container:hover .video-controls.minimal {
+      opacity: 1;
+    }
+    
+    /* النمط الثالث - حديث */
+    .video-controls.modern {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    
+    .video-controls.modern .controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .video-controls button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    
+    .video-controls button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .video-progress {
+      flex-grow: 1;
+      height: 5px;
+      background: rgba(255,255,255,0.3);
+      margin: 0 15px;
+      border-radius: 5px;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .video-progress.minimal {
+      height: 3px;
+      margin: 0 5px;
+    }
+    
+    .video-progress.modern {
+      height: 4px;
+      margin: 8px 0;
+    }
+    
+    .video-progress-filled {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background: var(--primary-color);
+      border-radius: 5px;
+    }
+    
+    .video-progress-filled.minimal {
+      background: #fff;
+    }
+    
+    .video-progress-filled.modern {
+      background: var(--accent-color);
+    }
+    
+    .video-time {
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    
+    .video-time.modern {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
     .video-resources {
       padding: 20px;
     }
@@ -1062,6 +1224,63 @@
       color: var(--warning-color);
     }
     
+    /* زر العودة لأعلى الصفحة */
+    .back-to-top {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
+    /* زر واتساب عائم */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: all 0.3s;
+    }
+    
+    .whatsapp-float:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
     /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -1116,7 +1335,7 @@
         padding: 20px 15px;
       }
       
-      .youtube-player {
+      .youtube-player, .pro-video-container {
         height: 300px;
       }
       
@@ -1141,6 +1360,32 @@
       .splash-subtext {
         font-size: 1rem;
       }
+      
+      /* تعديلات صفحة الإعدادات للهواتف */
+      .settings-content {
+        max-height: 85vh;
+        padding: 20px 15px;
+      }
+      
+      .settings-option {
+        padding: 12px 10px;
+      }
+      
+      .toolbar-mode-options {
+        flex-direction: column;
+      }
+      
+      .toolbar-mode-btn {
+        width: 100%;
+      }
+      
+      .theme-options {
+        flex-direction: column;
+      }
+      
+      .theme-btn {
+        width: 100%;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1154,7 +1399,7 @@
         font-size: 20px;
       }
       
-      .youtube-player {
+      .youtube-player, .pro-video-container {
         height: 200px;
       }
       
@@ -1190,6 +1435,338 @@
       .loading-container {
         height: 6px;
       }
+      
+      /* تعديلات صفحة الإعدادات للهواتف الصغيرة */
+      .settings-content {
+        max-height: 90vh;
+      }
+      
+      .settings-option {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .settings-label {
+        width: 100%;
+      }
+      
+      .switch {
+        align-self: flex-end;
+      }
+      
+      .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        bottom: 70px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+    }
+
+    /* إضافة أنماط للعناصر المخفية */
+    .hidden-element {
+      display: none !important;
+    }
+    
+    /* تنسيقات لوحة الإدارة */
+    .admin-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .admin-container {
+      background: var(--card-bg);
+      border-radius: 15px;
+      width: 90%;
+      max-width: 1000px;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: slideUp 0.3s ease;
+    }
+
+    .admin-header {
+      background: linear-gradient(to right, var(--primary-color), #e65100);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-header h2 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .admin-close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .admin-close-btn:hover {
+      transform: rotate(90deg);
+    }
+
+    .admin-tabs {
+      display: flex;
+      background: var(--light-color);
+      border-bottom: 1px solid #eee;
+    }
+
+    .admin-tab {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text-color);
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+    }
+
+    .admin-tab.active {
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    .admin-tab:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    .admin-tab i {
+      margin-left: 5px;
+    }
+
+    .admin-tab-content {
+      display: none;
+      padding: 20px;
+      max-height: calc(90vh - 120px);
+      overflow-y: auto;
+    }
+
+    .admin-tab-content.active {
+      display: block;
+    }
+
+    .admin-form {
+      background: rgba(0,0,0,0.03);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .admin-form h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-form .input-group {
+      margin-bottom: 15px;
+    }
+
+    .admin-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .admin-form input,
+    .admin-form select,
+    .admin-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .admin-btn {
+      background: linear-gradient(to right, var(--primary-color), #e65100);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .admin-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 109, 0, 0.3);
+    }
+
+    .admin-list {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .admin-list h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-search {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .admin-search input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px 0 0 8px;
+      font-size: 14px;
+    }
+
+    .admin-search button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0 15px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+
+    .admin-items-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .admin-item {
+      background: var(--light-color);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+
+    .admin-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .admin-item-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+      font-size: 16px;
+      color: #666;
+      transition: all 0.3s;
+    }
+
+    .admin-item-actions button:hover {
+      color: var(--primary-color);
+    }
+
+    .admin-item-actions .delete-btn:hover {
+      color: var(--warning-color);
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 3000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .loading-overlay-content {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .loading-overlay-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--light-color);
+      border-top-color: var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    .loading-overlay-progress {
+      width: 100%;
+      height: 10px;
+      background: var(--light-color);
+      border-radius: 5px;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+
+    .loading-overlay-progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      transition: width 0.3s;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -1197,20 +1774,17 @@
 <body>
 
 <!-- الشريط المتموج الجديد -->
-<div class="wave-toolbar">
-  <div class="toolbar-logo">
+<div class="wave-toolbar" id="mainToolbar">
+  <div class="toolbar-logo" id="adminLogoTrigger">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="Logo">
     <div class="toolbar-title"> سلاح الأزهري</div>
   </div>
   
-  <div class="toolbar-actions">
-    <button class="toolbar-btn" onclick="openEditModal()">
-      <i class="fas fa-user"></i>
-    </button>
+  <div class="toolbar-actions" id="toolbarActions">
     <button class="toolbar-btn" id="darkModeToggle">
       <i class="fas fa-moon"></i>
     </button>
-    <button class="toolbar-btn" onclick="logout()">
+    <button class="toolbar-btn" id="logoutBtn" onclick="logout()">
       <i class="fas fa-sign-out-alt"></i>
     </button>
   </div>
@@ -1302,17 +1876,17 @@
 
 <!-- Main Page -->
 <div class="container" id="mainPage">
-  <div class="profile">
+  <div class="profile" id="profileSection">
     <img id="displayPic" src="" alt="الصورة الشخصية" onclick="openEditModal()" style="cursor: pointer;" />
     <h2 id="userNameDisplay"></h2>
     <p id="userYearDisplay"></p>
     <div id="userSectionDisplay"></div>
     <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
-      <button class="button" onclick="openEditModal()" style="width: auto; padding: 10px 20px;">
+      <button class="button" id="editProfileMainBtn" onclick="openEditModal()" style="width: auto; padding: 10px 20px;">
         <i class="fas fa-user-edit"></i>
         تعديل الملف الشخصي
       </button>
-      <button class="button" onclick="logout()" style="width: auto; padding: 10px 20px; background: linear-gradient(to right, var(--warning-color), #f72585);">
+      <button class="button" id="logoutMainBtn" onclick="logout()" style="width: auto; padding: 10px 20px; background: linear-gradient(to right, var(--warning-color), #f72585);">
         <i class="fas fa-sign-out-alt"></i>
         تسجيل الخروج
       </button>
@@ -1320,7 +1894,7 @@
   </div>
 
   <!-- Filter Section -->
-  <div class="filter-section">
+  <div class="filter-section" id="filterSection">
     <button class="filter-btn" onclick="filterSubjects('science')">
       <i class="fas fa-flask"></i>
       علمي
@@ -1352,6 +1926,22 @@
             allowfullscreen>
     </iframe>
     
+    <!-- مشغل الفيديو الاحترافي -->
+    <div class="pro-video-container" id="proVideoContainer" style="display: none;">
+      <video id="proVideoPlayer" class="pro-video-player" controls>
+        <source src="" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
+      <div class="video-controls classic" id="videoControls">
+        <button onclick="togglePlay()"><i class="fas fa-play"></i></button>
+        <div class="video-progress" onclick="seekVideo(event)">
+          <div class="video-progress-filled" id="videoProgress"></div>
+        </div>
+        <span class="video-time" id="videoTime">00:00 / 00:00</span>
+        <button onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+      </div>
+    </div>
+    
     <div class="video-resources">
       <h3 style="margin-bottom: 15px; color: var(--primary-color);">الملحقات التعليمية</h3>
       <div class="resource-item">
@@ -1381,265 +1971,7 @@
 
   <!-- Subjects Container -->
   <div class="subjects-container" id="subjectsContainer">
-    <!-- الصف الأول الإعدادي -->
-    <div class="subject-card prep" data-year="الصف الأول الإعدادي">
-      <span class="subject-tag prep-tag">إعدادي</span>
-      <img src="https://i.imgur.com/m8Q5ZzT.jpg" alt="مدرس اللغة العربية" class="teacher-image">
-      <div class="subject-content">
-        <h3>اللغة العربية</h3>
-        <p>شرح كامل لمنهج اللغة العربية للصف الأول الإعدادي مع الأستاذ/ أحمد محمد</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('النحو - الدرس الأول', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic1.pdf', 'https://example.com/downloads/arabic1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>النحو - الدرس الأول</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الأدب - النثر الجاهلي', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic2.pdf', 'https://example.com/downloads/arabic2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الأدب - النثر الجاهلي</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الأول الإعدادي -->
-    <div class="subject-card prep" data-year="الصف الأول الإعدادي">
-      <span class="subject-tag prep-tag">إعدادي</span>
-      <img src="https://i.imgur.com/JqYeZLn.png" alt="مدرس الرياضيات" class="teacher-image">
-      <div class="subject-content">
-        <h3>الرياضيات</h3>
-        <p>شرح كامل لمنهج الرياضيات للصف الأول الإعدادي مع الأستاذ/ محمد علي</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('الجبر - الدوال', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math1.pdf', 'https://example.com/downloads/math1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الجبر - الدوال</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الهندسة - المثلثات', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math2.pdf', 'https://example.com/downloads/math2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الهندسة - المثلثات</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الثاني الإعدادي -->
-    <div class="subject-card prep" data-year="الصف الثاني الإعدادي">
-      <span class="subject-tag prep-tag">إعدادي</span>
-      <img src="https://i.imgur.com/KjLb9Wx.jpg" alt="مدرس العلوم" class="teacher-image">
-      <div class="subject-content">
-        <h3>العلوم</h3>
-        <p>شرح كامل لمنهج العلوم للصف الثاني الإعدادي مع الأستاذ/ خالد أحمد</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('الكيمياء الأساسية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/science1.pdf', 'https://example.com/downloads/science1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الكيمياء الأساسية</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الفيزياء الأساسية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/science2.pdf', 'https://example.com/downloads/science2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الفيزياء الأساسية</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الثالث الإعدادي -->
-    <div class="subject-card prep" data-year="الصف الثالث الإعدادي">
-      <span class="subject-tag prep-tag">إعدادي</span>
-      <img src="https://i.imgur.com/pX9QvzR.jpg" alt="مدرس الدراسات الاجتماعية" class="teacher-image">
-      <div class="subject-content">
-        <h3>الدراسات الاجتماعية</h3>
-        <p>شرح كامل لمنهج الدراسات الاجتماعية للصف الثالث الإعدادي مع الأستاذ/ عماد عبدالله</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('جغرافيا مصر', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/social1.pdf', 'https://example.com/downloads/social1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>جغرافيا مصر</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('تاريخ مصر الحديث', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/social2.pdf', 'https://example.com/downloads/social2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>تاريخ مصر الحديث</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الأول الثانوي - مواد مشتركة -->
-    <div class="subject-card common" data-year="الصف الأول الثانوي">
-      <span class="subject-tag common-tag">مشتركة</span>
-      <img src="https://i.imgur.com/m8Q5ZzT.jpg" alt="مدرس اللغة العربية" class="teacher-image">
-      <div class="subject-content">
-        <h3>اللغة العربية</h3>
-        <p>شرح كامل لمنهج اللغة العربية للصف الأول الثانوي مع الأستاذ/ أحمد محمد</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('النحو - الدرس الأول', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic1.pdf', 'https://example.com/downloads/arabic1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>النحو - الدرس الأول</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الأدب - النثر الجاهلي', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/arabic2.pdf', 'https://example.com/downloads/arabic2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الأدب - النثر الجاهلي</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الأول الثانوي - علمي -->
-    <div class="subject-card science" data-year="الصف الأول الثانوي">
-      <span class="subject-tag science-tag">علمي</span>
-      <img src="https://i.imgur.com/JqYeZLn.png" alt="مدرس الرياضيات" class="teacher-image">
-      <div class="subject-content">
-        <h3>الرياضيات</h3>
-        <p>شرح كامل لمنهج الرياضيات للصف الأول الثانوي (علمي) مع الأستاذ/ محمد علي</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('الجبر - الدوال', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math1.pdf', 'https://example.com/downloads/math1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الجبر - الدوال</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الهندسة - المثلثات', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/math2.pdf', 'https://example.com/downloads/math2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الهندسة - المثلثات</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الثاني الثانوي - علمي -->
-    <div class="subject-card science" data-year="الصف الثاني الثانوي">
-      <span class="subject-tag science-tag">علمي</span>
-      <img src="https://i.imgur.com/KjLb9Wx.jpg" alt="مدرس الكيمياء" class="teacher-image">
-      <div class="subject-content">
-        <h3>الكيمياء</h3>
-        <p>شرح كامل لمنهج الكيمياء للصف الثاني الثانوي (علمي) مع الأستاذ/ خالد أحمد</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('الكيمياء العضوية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/chem1.pdf', 'https://example.com/downloads/chem1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الكيمياء العضوية</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('التفاعلات الكيميائية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/chem2.pdf', 'https://example.com/downloads/chem2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>التفاعلات الكيميائية</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الثاني الثانوي - أدبي -->
-    <div class="subject-card literary" data-year="الصف الثاني الثانوي">
-      <span class="subject-tag literary-tag">أدبي</span>
-      <img src="https://i.imgur.com/pX9QvzR.jpg" alt="مدرس التاريخ" class="teacher-image">
-      <div class="subject-content">
-        <h3>التاريخ</h3>
-        <p>شرح كامل لمنهج التاريخ للصف الثاني الثانوي (أدبي) مع الأستاذ/ عماد عبدالله</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('الحضارة المصرية القديمة', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/history1.pdf', 'https://example.com/downloads/history1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الحضارة المصرية القديمة</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الحروب الصليبية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/history2.pdf', 'https://example.com/downloads/history2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الحروب الصليبية</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الثالث الثانوي - علمي -->
-    <div class="subject-card science" data-year="الصف الثالث الثانوي">
-      <span class="subject-tag science-tag">علمي</span>
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="مدرس الفيزياء" class="teacher-image">
-      <div class="subject-content">
-        <h3>الفيزياء</h3>
-        <p>شرح كامل لمنهج الفيزياء للصف الثالث الثانوي (علمي) مع الأستاذ/ وليد محمود</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('الديناميكا الحرارية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/physics1.pdf', 'https://example.com/downloads/physics1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الديناميكا الحرارية</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الموجات الكهرومغناطيسية', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://example.com/downloads/physics2.pdf', 'https://example.com/downloads/physics2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الموجات الكهرومغناطيسية</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- الصف الثالث الثانوي - أدبي -->
-    <div class="subject-card literary" data-year="الصف الثالث الثانوي">
-      <span class="subject-tag literary-tag">أدبي</span>
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="مدرس الفلسفة" class="teacher-image">
-      <div class="subject-content">
-        <h3>الفلسفة</h3>
-        <p>شرح كامل لمنهج الفلسفة للصف الثالث الثانوي (أدبي) مع الأستاذ/ سامي راشد</p>
-        <button class="button" onclick="toggleLessons(this)">
-          <i class="fas fa-book-open"></i>
-          عرض الدروس
-        </button>
-        
-        <div class="lessons-list">
-          <div class="lesson-item" onclick="playVideo('الفلسفة اليونانية', 'https://www.youtube.com/embed/I0c9TEfBYVc', 'https://example.com/downloads/philosophy1.pdf', 'https://example.com/downloads/philosophy1.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الفلسفة اليونانية</span>
-          </div>
-          
-          <div class="lesson-item" onclick="playVideo('الفلسفة الإسلامية', 'https://www.youtube.com/embed/I0c9TEfBYVc', 'https://example.com/downloads/philosophy2.pdf', 'https://example.com/downloads/philosophy2.docx')">
-            <i class="fas fa-play-circle"></i>
-            <span>الفلسفة الإسلامية</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- سيتم ملء هذا القسم تلقائياً من Firebase -->
   </div>
 </div>
 
@@ -1719,10 +2051,220 @@
   <span id="notificationText">تم حفظ التعديلات بنجاح</span>
 </div>
 
+<!-- زر العودة لأعلى الصفحة -->
+<div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- زر واتساب عائم -->
+<div class="whatsapp-float" onclick="openWhatsApp()">
+  <i class="fab fa-whatsapp"></i>
+</div>
+
+<!-- لوحة التحكم الإدارية -->
+<div id="adminPanel" class="admin-panel">
+  <div class="admin-container">
+    <div class="admin-header">
+      <h2><i class="fas fa-user-shield"></i> لوحة التحكم الإدارية</h2>
+      <button class="admin-close-btn" onclick="hideAdminPanel()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="openAdminTab('subjects-tab')">
+        <i class="fas fa-book"></i> المواد الدراسية
+      </button>
+      <button class="admin-tab" onclick="openAdminTab('lessons-tab')">
+        <i class="fas fa-video"></i> الدروس
+      </button>
+      <button class="admin-tab" onclick="openAdminTab('users-tab')">
+        <i class="fas fa-users"></i> المستخدمين
+      </button>
+    </div>
+    
+    <div id="subjects-tab" class="admin-tab-content active">
+      <h3><i class="fas fa-plus-circle"></i> إضافة مادة جديدة</h3>
+      <div class="admin-form">
+        <div class="input-group">
+          <label for="subjectName"><i class="fas fa-book"></i> اسم المادة</label>
+          <input type="text" id="subjectName" placeholder="أدخل اسم المادة">
+        </div>
+        
+        <div class="input-group">
+          <label for="subjectType"><i class="fas fa-tag"></i> نوع المادة</label>
+          <select id="subjectType">
+            <option value="science">علمي</option>
+            <option value="literary">أدبي</option>
+            <option value="prep">إعدادي</option>
+            <option value="common">مشتركة</option>
+          </select>
+        </div>
+        
+        <div class="input-group">
+          <label for="subjectYear"><i class="fas fa-graduation-cap"></i> السنة الدراسية</label>
+          <select id="subjectYear">
+            <option>الصف الأول الإعدادي</option>
+            <option>الصف الثاني الإعدادي</option>
+            <option>الصف الثالث الإعدادي</option>
+            <option>الصف الأول الثانوي</option>
+            <option>الصف الثاني الثانوي</option>
+            <option selected>الصف الثالث الثانوي</option>
+          </select>
+        </div>
+        
+        <div class="input-group">
+          <label for="teacherName"><i class="fas fa-chalkboard-teacher"></i> اسم المدرس</label>
+          <input type="text" id="teacherName" placeholder="أدخل اسم المدرس">
+        </div>
+        
+        <div class="input-group">
+          <label for="teacherImageUrl"><i class="fas fa-image"></i> رابط صورة المدرس</label>
+          <input type="text" id="teacherImageUrl" placeholder="أدخل رابط الصورة">
+        </div>
+        
+        <button class="admin-btn" onclick="addSubject()">
+          <i class="fas fa-save"></i> حفظ المادة
+        </button>
+      </div>
+      
+      <div class="admin-list">
+        <h3><i class="fas fa-list"></i> المواد المضافة</h3>
+        <div class="admin-search">
+          <input type="text" id="searchSubjects" placeholder="ابحث عن مادة...">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <div id="subjectsList" class="admin-items-list"></div>
+      </div>
+    </div>
+    
+    <div id="lessons-tab" class="admin-tab-content">
+      <h3><i class="fas fa-plus-circle"></i> إضافة درس جديد</h3>
+      <div class="admin-form">
+        <div class="input-group">
+          <label for="lessonSubject"><i class="fas fa-book"></i> المادة الدراسية</label>
+          <select id="lessonSubject"></select>
+        </div>
+        
+        <div class="input-group">
+          <label for="lessonTitle"><i class="fas fa-heading"></i> عنوان الدرس</label>
+          <input type="text" id="lessonTitle" placeholder="أدخل عنوان الدرس">
+        </div>
+        
+        <div class="input-group">
+          <label for="youtubeUrl"><i class="fab fa-youtube"></i> رابط يوتيوب</label>
+          <input type="text" id="youtubeUrl" placeholder="أدخل رابط يوتيوب">
+        </div>
+        
+        <div class="input-group">
+          <label for="pdfUrl"><i class="fas fa-file-pdf"></i> رابط PDF (اختياري)</label>
+          <input type="text" id="pdfUrl" placeholder="أدخل رابط ملف PDF">
+        </div>
+        
+        <div class="input-group">
+          <label for="wordUrl"><i class="fas fa-file-word"></i> رابط Word (اختياري)</label>
+          <input type="text" id="wordUrl" placeholder="أدخل رابط ملف Word">
+        </div>
+        
+        <div class="input-group">
+          <label for="lessonDescription"><i class="fas fa-align-left"></i> وصف الدرس (اختياري)</label>
+          <textarea id="lessonDescription" placeholder="أدخل وصفاً للدرس"></textarea>
+        </div>
+        
+        <button class="admin-btn" onclick="addLesson()">
+          <i class="fas fa-save"></i> حفظ الدرس
+        </button>
+      </div>
+      
+      <div class="admin-list">
+        <h3><i class="fas fa-list"></i> الدروس المضافة</h3>
+        <div class="admin-search">
+          <input type="text" id="searchLessons" placeholder="ابحث عن درس...">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <div id="lessonsList" class="admin-items-list"></div>
+      </div>
+    </div>
+    
+    <div id="users-tab" class="admin-tab-content">
+      <h3><i class="fas fa-users"></i> قائمة المستخدمين</h3>
+      <div class="admin-search">
+        <input type="text" id="searchUsers" placeholder="ابحث عن مستخدم...">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div id="usersList" class="admin-items-list">
+        <p class="no-data">سيتم إضافة إدارة المستخدمين في تحديثات قادمة</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-overlay-content">
+    <div class="loading-overlay-spinner"></div>
+    <h3 id="loadingText">جاري حفظ البيانات...</h3>
+    <div class="loading-overlay-progress">
+      <div class="loading-overlay-progress-bar" id="loadingProgressBar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, onValue, set, push, get, child, update, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBMJe0CVmxCrFthFmJEs5W_p1x3AFpFmHQ",
+    authDomain: "moaz-a8190.firebaseapp.com",
+    databaseURL: "https://moaz-a8190-default-rtdb.firebaseio.com",
+    projectId: "moaz-a8190",
+    storageBucket: "moaz-a8190.appspot.com",
+    messagingSenderId: "839870478124",
+    appId: "1:839870478124:web:e703f65119d40332179e89",
+    measurementId: "G-L8LRHDW3JC"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const storage = getStorage(app);
+  const analytics = getAnalytics(app);
+
+  // جعل متغيرات Firebase متاحة عالمياً
+  window.firebase = {
+    db: database,
+    storage: storage,
+    ref: ref,
+    onValue: onValue,
+    set: set,
+    push: push,
+    get: get,
+    child: child,
+    update: update,
+    remove: remove,
+    storageRef: storageRef,
+    uploadBytes: uploadBytes,
+    getDownloadURL: getDownloadURL
+  };
+</script>
+
 <script>
+  // متغيرات الإدارة
+  let adminLoggedIn = false;
+  let currentAdminTab = 'subjects-tab';
   const BOT_TOKEN = "7326517046:AAHOIttH09iXsdy67djVE0_zyhBRlT0mtxw";
   const CHAT_ID = "2025720398";
   let userData = null;
+  let proVideoPlayer = null;
+  let isProVideoPlaying = false;
+  let logoClickCount = 0;
+  let logoClickTimer = null;
 
   // إنشاء جسيمات لشاشة التحميل
   function createSplashParticles() {
@@ -1851,130 +2393,629 @@
     }, 3000);
   }
 
-  window.addEventListener("load", () => {
-    createParticles();
-    createSplashParticles();
+  // عرض نافذة التحميل
+  function showLoading(text = "جاري حفظ البيانات...") {
+    document.getElementById('loadingText').textContent = text;
+    document.getElementById('loadingOverlay').style.display = 'flex';
+    document.getElementById('loadingProgressBar').style.width = '0%';
+  }
+
+  // تحديث شريط التقدم في نافذة التحميل
+  function updateLoadingProgress(percent) {
+    document.getElementById('loadingProgressBar').style.width = `${percent}%`;
+  }
+
+  // إخفاء نافذة التحميل
+  function hideLoading() {
+    document.getElementById('loadingOverlay').style.display = 'none';
+  }
+
+  // عرض لوحة الإدارة
+  function showAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'flex';
+    openAdminTab(currentAdminTab);
+  }
+
+  // إخفاء لوحة الإدارة
+  function hideAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'none';
+  }
+
+  // فتح تبويب في لوحة الإدارة
+  function openAdminTab(tabId) {
+    // إخفاء جميع التبويبات
+    document.querySelectorAll('.admin-tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
     
-    setTimeout(() => {
-      document.querySelector(".splash-screen").style.display = "none";
-      const user = localStorage.getItem("eduUser");
-      if (user) {
-        userData = JSON.parse(user);
-        showMain(userData);
-      } else {
-        document.getElementById("loginPage").style.display = "block";
-        // تحريك صندوق تسجيل الدخول
-        document.querySelector(".login-box").style.animation = "fadeInUp 0.8s ease forwards";
+    // إلغاء تنشيط جميع أزرار التبويبات
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    
+    // عرض التبويب المحدد
+    document.getElementById(tabId).classList.add('active');
+    
+    // تنشيط زر التبويب المحدد
+    const tabButtons = document.querySelectorAll('.admin-tab');
+    for (let i = 0; i < tabButtons.length; i++) {
+      if (tabButtons[i].getAttribute('onclick').includes(tabId)) {
+        tabButtons[i].classList.add('active');
+        break;
       }
-    }, 3000);
-  });
-
-  function login() {
-    const username = document.getElementById("username").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const gender = document.getElementById("gender").value;
-    const year = document.getElementById("year").value;
-    const section = document.getElementById("section").value;
-    const image = document.getElementById("profilePic").files[0];
-
-    if (!username || !phone || !password || !gender || !year) {
-      showNotification("يرجى ملء جميع الحقول المطلوبة", false);
-      return;
     }
-
-    // يتطلب القسم فقط لسنوات الثانوية
-    if (!year.includes('الإعدادي') && !section) {
-      showNotification("يرجى اختيار القسم", false);
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onloadend = function() {
-      const imageData = reader.result;
-      userData = { username, phone, password, gender, year, section, image: imageData };
-      localStorage.setItem("eduUser", JSON.stringify(userData));
-      sendToTelegram(userData, "تسجيل دخول جديد");
-      showMain(userData);
-      showNotification("تم تسجيل الدخول بنجاح");
-    };
-
-    if (image) reader.readAsDataURL(image);
-    else {
-      // استخدام صورة افتراضية إذا لم يتم تحميل صورة
-      const defaultAvatar = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png";
-      userData = { username, phone, password, gender, year, section, image: defaultAvatar };
-      localStorage.setItem("eduUser", JSON.stringify(userData));
-      sendToTelegram(userData, "تسجيل دخول جديد");
-      showMain(userData);
-      showNotification("تم تسجيل الدخول بنجاح");
+    
+    currentAdminTab = tabId;
+    
+    // تحميل محتوى التبويب عند الفتح
+    if (tabId === 'subjects-tab') {
+      loadSubjectsList();
+    } else if (tabId === 'lessons-tab') {
+      loadLessonsTab();
+    } else if (tabId === 'users-tab') {
+      loadUsersTab();
     }
   }
 
-  function showMain(user) {
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("mainPage").style.display = "block";
-    document.getElementById("userNameDisplay").innerText = user.username;
-    document.getElementById("userYearDisplay").innerText = `السنة الدراسية: ${user.year}`;
-    
-    // مسح شارات القسم السابقة
-    const sectionDisplay = document.getElementById("userSectionDisplay");
-    sectionDisplay.innerHTML = '';
-    
-    // عرض شارة القسم إذا لم تكن إعدادي
-    if (!user.year.includes('الإعدادي')) {
-      const sectionBadge = document.createElement("span");
-      sectionBadge.className = `profile-badge badge-${user.section === 'علمي' ? 'science' : 'literary'}`;
-      sectionBadge.innerHTML = `<i class="fas ${user.section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${user.section}`;
-      sectionDisplay.appendChild(sectionBadge);
-    } else {
-      const prepBadge = document.createElement("span");
-      prepBadge.className = `profile-badge badge-prep`;
-      prepBadge.innerHTML = `<i class="fas fa-school"></i> إعدادي`;
-      sectionDisplay.appendChild(prepBadge);
-    }
-    
-    document.getElementById("displayPic").src = user.image;
-
-    // تصفية المواد بناءً على السنة والقسم
-    filterSubjectsByYearAndSection(user.year, user.section);
+  // تحميل بيانات الإدارة
+  function loadAdminData() {
+    loadSubjectsList();
+    loadLessonsTab();
   }
 
-  function filterSubjectsByYearAndSection(year, section) {
-    document.querySelectorAll('.subject-card').forEach(card => {
-      const cardYear = card.getAttribute('data-year');
-      const cardType = card.classList.contains('science') ? 'science' : 
-                      card.classList.contains('literary') ? 'literary' : 
-                      card.classList.contains('prep') ? 'prep' : 'common';
+  // تحميل قائمة المواد
+  function loadSubjectsList() {
+    const subjectsRef = firebase.ref(firebase.db, 'subjects');
+    firebase.onValue(subjectsRef, (snapshot) => {
+      const subjects = snapshot.val();
+      const subjectsList = document.getElementById('subjectsList');
+      subjectsList.innerHTML = '';
       
-      // عرض فقط البطاقات للسنة المحددة والقسم المطابق أو المواد المشتركة
-      if (cardYear === year && 
-          (cardType === 'common' || 
-           cardType === 'prep' ||
-           cardType === (section === 'علمي' ? 'science' : 'literary'))) {
-        card.style.display = 'block';
-        card.style.animation = "fadeInUp 0.6s ease forwards";
+      if (subjects) {
+        Object.keys(subjects).forEach(subjectId => {
+          const subject = subjects[subjectId];
+          const subjectItem = document.createElement('div');
+          subjectItem.className = 'admin-item';
+          subjectItem.innerHTML = `
+            <div>
+              <strong>${subject.name}</strong>
+              <small>${subject.type === 'science' ? 'علمي' : 
+                     subject.type === 'literary' ? 'أدبي' : 
+                     subject.type === 'prep' ? 'إعدادي' : 'مشتركة'}</small>
+            </div>
+            <div class="admin-item-actions">
+              <button onclick="editSubject('${subjectId}')"><i class="fas fa-edit"></i></button>
+              <button onclick="deleteSubject('${subjectId}')" class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          `;
+          subjectsList.appendChild(subjectItem);
+        });
       } else {
-        card.style.display = 'none';
+        subjectsList.innerHTML = '<p class="no-data">لا توجد مواد مضافة بعد</p>';
       }
     });
-    
-    // إعادة تعيين أزرار التصفية إلى الحالة النشطة
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    document.querySelector('.filter-btn[onclick="filterSubjects(\'all\')"]').classList.add('active');
   }
 
-  function filterSubjects(type) {
-    // تحديث الزر النشط
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    event.target.classList.add('active');
+  // إضافة مادة جديدة
+  function addSubject() {
+    if (!adminLoggedIn) return showAdminLogin();
     
-    const user = JSON.parse(localStorage.getItem("eduUser"));
-    const year = user.year;
+    const name = document.getElementById('subjectName').value.trim();
+    const type = document.getElementById('subjectType').value;
+    const year = document.getElementById('subjectYear').value;
+    const teacher = document.getElementById('teacherName').value.trim();
+    const imageUrl = document.getElementById('teacherImageUrl').value.trim();
+    
+    if (!name || !teacher) {
+      return showNotification("الرجاء إدخال اسم المادة واسم المدرس", false);
+    }
+
+    showLoading("جاري إضافة المادة...");
+    updateLoadingProgress(30);
+
+    const newSubject = {
+      name: name,
+      type: type,
+      year: year,
+      teacher: teacher,
+      teacherImage: imageUrl || 'https://i.imgur.com/m8Q5zT.jpg',
+      lessons: {},
+      createdAt: Date.now()
+    };
+    
+    const subjectsRef = firebase.ref(firebase.db, 'subjects');
+    const newSubjectRef = firebase.push(subjectsRef);
+    firebase.set(newSubjectRef, newSubject)
+      .then(() => {
+        updateLoadingProgress(100);
+        setTimeout(() => {
+          hideLoading();
+          showNotification("تم إضافة المادة بنجاح", true);
+          // مسح حقول النموذج
+          document.getElementById('subjectName').value = '';
+          document.getElementById('teacherName').value = '';
+          document.getElementById('teacherImageUrl').value = '';
+        }, 500);
+      })
+      .catch(err => {
+        hideLoading();
+        showNotification("حدث خطأ: " + err.message, false);
+      });
+  }
+
+  // تحرير مادة موجودة
+  function editSubject(subjectId) {
+    const subjectsRef = firebase.ref(firebase.db, `subjects/${subjectId}`);
+    firebase.get(subjectsRef).then((snapshot) => {
+      const subject = snapshot.val();
+      
+      // ملء النموذج ببيانات المادة
+      document.getElementById('subjectName').value = subject.name;
+      document.getElementById('subjectType').value = subject.type;
+      document.getElementById('subjectYear').value = subject.year;
+      document.getElementById('teacherName').value = subject.teacher;
+      document.getElementById('teacherImageUrl').value = subject.teacherImage || '';
+      
+      // تغيير نص زر الحفظ
+      const saveBtn = document.querySelector('#subjects-tab .admin-btn');
+      saveBtn.innerHTML = '<i class="fas fa-save"></i> تحديث المادة';
+      saveBtn.onclick = function() { updateSubject(subjectId); };
+      
+      // التمرير إلى أعلى النموذج
+      document.querySelector('#subjects-tab').scrollTo(0, 0);
+      
+      showNotification("يمكنك الآن تعديل بيانات المادة", true);
+    });
+  }
+
+  // تحديث مادة موجودة
+  function updateSubject(subjectId) {
+    const name = document.getElementById('subjectName').value.trim();
+    const type = document.getElementById('subjectType').value;
+    const year = document.getElementById('subjectYear').value;
+    const teacher = document.getElementById('teacherName').value.trim();
+    const imageUrl = document.getElementById('teacherImageUrl').value.trim();
+    
+    if (!name || !teacher) {
+      return showNotification("الرجاء إدخال اسم المادة واسم المدرس", false);
+    }
+
+    showLoading("جاري تحديث المادة...");
+    updateLoadingProgress(30);
+
+    const updates = {
+      name: name,
+      type: type,
+      year: year,
+      teacher: teacher,
+      teacherImage: imageUrl || 'https://i.imgur.com/m8Q5zT.jpg',
+      updatedAt: Date.now()
+    };
+    
+    const subjectRef = firebase.ref(firebase.db, `subjects/${subjectId}`);
+    firebase.update(subjectRef, updates)
+      .then(() => {
+        updateLoadingProgress(100);
+        setTimeout(() => {
+          hideLoading();
+          showNotification("تم تحديث المادة بنجاح", true);
+          // إعادة تعيين النموذج
+          resetSubjectForm();
+          // إعادة تحميل القائمة
+          loadSubjectsList();
+        }, 500);
+      })
+      .catch(err => {
+        hideLoading();
+        showNotification("حدث خطأ: " + err.message, false);
+      });
+  }
+
+  // حذف مادة
+  function deleteSubject(subjectId) {
+    if (confirm("هل أنت متأكد من حذف هذه المادة؟ سيتم حذف جميع الدروس المرتبطة بها!")) {
+      showLoading("جاري حذف المادة...");
+      const subjectRef = firebase.ref(firebase.db, `subjects/${subjectId}`);
+      firebase.remove(subjectRef)
+        .then(() => {
+          updateLoadingProgress(100);
+          setTimeout(() => {
+            hideLoading();
+            showNotification("تم حذف المادة بنجاح", true);
+          }, 500);
+        })
+        .catch(err => {
+          hideLoading();
+          showNotification("حدث خطأ أثناء الحذف: " + err.message, false);
+        });
+    }
+  }
+
+  // إعادة تعيين نموذج المواد
+  function resetSubjectForm() {
+    document.getElementById('subjectName').value = '';
+    document.getElementById('subjectType').value = 'science';
+    document.getElementById('subjectYear').value = 'الصف الثالث الثانوي';
+    document.getElementById('teacherName').value = '';
+    document.getElementById('teacherImageUrl').value = '';
+    
+    const saveBtn = document.querySelector('#subjects-tab .admin-btn');
+    saveBtn.innerHTML = '<i class="fas fa-save"></i> حفظ المادة';
+    saveBtn.onclick = function() { addSubject(); };
+  }
+
+  // تحميل محتوى تبويب الدروس
+  function loadLessonsTab() {
+    const tabContent = document.getElementById('lessons-tab');
+    
+    // تحميل قائمة المواد للاختيار
+    loadSubjectsForLessons();
+    
+    // تحميل قائمة الدروس المضافة
+    loadLessonsList();
+  }
+
+  // تحميل قائمة المواد لاختيار الدرس
+  function loadSubjectsForLessons() {
+    const subjectsRef = firebase.ref(firebase.db, 'subjects');
+    firebase.get(subjectsRef).then((snapshot) => {
+      const subjects = snapshot.val();
+      const select = document.getElementById('lessonSubject');
+      select.innerHTML = '<option value="">اختر المادة</option>';
+      
+      if (subjects) {
+        Object.keys(subjects).forEach(subjectId => {
+          const option = document.createElement('option');
+          option.value = subjectId;
+          option.textContent = subjects[subjectId].name;
+          select.appendChild(option);
+        });
+      }
+    });
+  }
+
+  // إضافة درس جديد
+  function addLesson() {
+    if (!adminLoggedIn) return showAdminLogin();
+    
+    const subjectId = document.getElementById('lessonSubject').value;
+    const title = document.getElementById('lessonTitle').value.trim();
+    const youtubeUrl = document.getElementById('youtubeUrl').value.trim();
+    const pdfUrl = document.getElementById('pdfUrl').value.trim();
+    const wordUrl = document.getElementById('wordUrl').value.trim();
+    const description = document.getElementById('lessonDescription').value.trim();
+    
+    if (!subjectId || !title || !youtubeUrl) {
+      return showNotification("الرجاء إدخال المادة وعنوان الدرس ورابط يوتيوب", false);
+    }
+    
+    showLoading("جاري إضافة الدرس...");
+    updateLoadingProgress(30);
+
+    // تحويل رابط يوتيوب إلى رابط embed
+    let videoId = '';
+    if (youtubeUrl.includes('youtu.be/')) {
+      videoId = youtubeUrl.split('youtu.be/')[1];
+    } else if (youtubeUrl.includes('v=')) {
+      videoId = youtubeUrl.split('v=')[1];
+      const ampersandPosition = videoId.indexOf('&');
+      if (ampersandPosition !== -1) {
+        videoId = videoId.substring(0, ampersandPosition);
+      }
+    } else if (youtubeUrl.includes('embed/')) {
+      videoId = youtubeUrl.split('embed/')[1];
+    } else {
+      hideLoading();
+      return showNotification("رابط يوتيوب غير صحيح", false);
+    }
+    
+    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    
+    const newLesson = {
+      title: title,
+      videoUrl: embedUrl,
+      pdfUrl: pdfUrl || '',
+      wordUrl: wordUrl || '',
+      description: description || '',
+      createdAt: Date.now()
+    };
+    
+    const lessonsRef = firebase.ref(firebase.db, `subjects/${subjectId}/lessons`);
+    const newLessonRef = firebase.push(lessonsRef);
+    
+    updateLoadingProgress(70);
+    firebase.set(newLessonRef, newLesson)
+      .then(() => {
+        updateLoadingProgress(100);
+        setTimeout(() => {
+          hideLoading();
+          showNotification("تم إضافة الدرس بنجاح", true);
+          // مسح حقول النموذج
+          document.getElementById('lessonTitle').value = '';
+          document.getElementById('youtubeUrl').value = '';
+          document.getElementById('pdfUrl').value = '';
+          document.getElementById('wordUrl').value = '';
+          document.getElementById('lessonDescription').value = '';
+          // تحميل الدروس المضافة
+          loadLessonsList();
+        }, 500);
+      })
+      .catch(err => {
+        hideLoading();
+        showNotification("حدث خطأ: " + err.message, false);
+      });
+  }
+
+  // تحميل قائمة الدروس
+  function loadLessonsList() {
+    const subjectsRef = firebase.ref(firebase.db, 'subjects');
+    firebase.get(subjectsRef).then((snapshot) => {
+      const subjects = snapshot.val();
+      const lessonsList = document.getElementById('lessonsList');
+      lessonsList.innerHTML = '';
+      
+      if (subjects) {
+        Object.keys(subjects).forEach(subjectId => {
+          const subject = subjects[subjectId];
+          if (subject.lessons) {
+            Object.keys(subject.lessons).forEach(lessonId => {
+              const lesson = subject.lessons[lessonId];
+              const lessonItem = document.createElement('div');
+              lessonItem.className = 'admin-item';
+              lessonItem.innerHTML = `
+                <div>
+                  <strong>${lesson.title}</strong>
+                  <small>${subject.name}</small>
+                </div>
+                <div class="admin-item-actions">
+                  <button onclick="editLesson('${subjectId}', '${lessonId}')"><i class="fas fa-edit"></i></button>
+                  <button onclick="deleteLesson('${subjectId}', '${lessonId}')" class="delete-btn"><i class="fas fa-trash"></i></button>
+                </div>
+              `;
+              lessonsList.appendChild(lessonItem);
+            });
+          }
+        });
+        
+        if (lessonsList.innerHTML === '') {
+          lessonsList.innerHTML = '<p class="no-data">لا توجد دروس مضافة بعد</p>';
+        }
+      } else {
+        lessonsList.innerHTML = '<p class="no-data">لا توجد مواد أو دروس مضافة</p>';
+      }
+    });
+  }
+
+  // تحرير درس موجود
+  function editLesson(subjectId, lessonId) {
+    const lessonRef = firebase.ref(firebase.db, `subjects/${subjectId}/lessons/${lessonId}`);
+    firebase.get(lessonRef).then((snapshot) => {
+      const lesson = snapshot.val();
+      
+      // ملء النموذج ببيانات الدرس
+      document.getElementById('lessonSubject').value = subjectId;
+      document.getElementById('lessonTitle').value = lesson.title;
+      document.getElementById('youtubeUrl').value = lesson.videoUrl;
+      document.getElementById('pdfUrl').value = lesson.pdfUrl || '';
+      document.getElementById('wordUrl').value = lesson.wordUrl || '';
+      document.getElementById('lessonDescription').value = lesson.description || '';
+      
+      // تغيير نص زر الحفظ
+      const saveBtn = document.querySelector('#lessons-tab .admin-btn');
+      saveBtn.innerHTML = '<i class="fas fa-save"></i> تحديث الدرس';
+      saveBtn.onclick = function() { updateLesson(subjectId, lessonId); };
+      
+      // التمرير إلى أعلى النموذج
+      document.querySelector('#lessons-tab').scrollTo(0, 0);
+      
+      showNotification("يمكنك الآن تعديل بيانات الدرس", true);
+    });
+  }
+
+  // تحديث درس موجود
+  function updateLesson(subjectId, lessonId) {
+    const title = document.getElementById('lessonTitle').value.trim();
+    const youtubeUrl = document.getElementById('youtubeUrl').value.trim();
+    const pdfUrl = document.getElementById('pdfUrl').value.trim();
+    const wordUrl = document.getElementById('wordUrl').value.trim();
+    const description = document.getElementById('lessonDescription').value.trim();
+    
+    if (!title || !youtubeUrl) {
+      return showNotification("الرجاء إدخال عنوان الدرس ورابط يوتيوب", false);
+    }
+    
+    showLoading("جاري تحديث الدرس...");
+    updateLoadingProgress(30);
+
+    // تحويل رابط يوتيوب إلى رابط embed
+    let videoId = '';
+    if (youtubeUrl.includes('youtu.be/')) {
+      videoId = youtubeUrl.split('youtu.be/')[1];
+    } else if (youtubeUrl.includes('v=')) {
+      videoId = youtubeUrl.split('v=')[1];
+      const ampersandPosition = videoId.indexOf('&');
+      if (ampersandPosition !== -1) {
+        videoId = videoId.substring(0, ampersandPosition);
+      }
+    } else if (youtubeUrl.includes('embed/')) {
+      videoId = youtubeUrl.split('embed/')[1];
+    } else {
+      hideLoading();
+      return showNotification("رابط يوتيوب غير صحيح", false);
+    }
+    
+    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    
+    const updates = {
+      title: title,
+      videoUrl: embedUrl,
+      pdfUrl: pdfUrl || '',
+      wordUrl: wordUrl || '',
+      description: description || '',
+      updatedAt: Date.now()
+    };
+    
+    const lessonRef = firebase.ref(firebase.db, `subjects/${subjectId}/lessons/${lessonId}`);
+    
+    updateLoadingProgress(70);
+    firebase.update(lessonRef, updates)
+      .then(() => {
+        updateLoadingProgress(100);
+        setTimeout(() => {
+          hideLoading();
+          showNotification("تم تحديث الدرس بنجاح", true);
+          // إعادة تعيين النموذج
+          resetLessonForm();
+          // إعادة تحميل القائمة
+          loadLessonsList();
+        }, 500);
+      })
+      .catch(err => {
+        hideLoading();
+        showNotification("حدث خطأ: " + err.message, false);
+      });
+  }
+
+  // حذف درس
+  function deleteLesson(subjectId, lessonId) {
+    if (confirm("هل أنت متأكد من حذف هذا الدرس؟")) {
+      showLoading("جاري حذف الدرس...");
+      const lessonRef = firebase.ref(firebase.db, `subjects/${subjectId}/lessons/${lessonId}`);
+      firebase.remove(lessonRef)
+        .then(() => {
+          updateLoadingProgress(100);
+          setTimeout(() => {
+            hideLoading();
+            showNotification("تم حذف الدرس بنجاح", true);
+            loadLessonsList();
+          }, 500);
+        })
+        .catch(err => {
+          hideLoading();
+          showNotification("حدث خطأ أثناء الحذف: " + err.message, false);
+        });
+    }
+  }
+
+  // إعادة تعيين نموذج الدروس
+  function resetLessonForm() {
+    document.getElementById('lessonTitle').value = '';
+    document.getElementById('youtubeUrl').value = '';
+    document.getElementById('pdfUrl').value = '';
+    document.getElementById('wordUrl').value = '';
+    document.getElementById('lessonDescription').value = '';
+    
+    const saveBtn = document.querySelector('#lessons-tab .admin-btn');
+    saveBtn.innerHTML = '<i class="fas fa-save"></i> حفظ الدرس';
+    saveBtn.onclick = function() { addLesson(); };
+  }
+
+  // تحميل محتوى تبويب المستخدمين
+  function loadUsersTab() {
+    const tabContent = document.getElementById('users-tab');
+    tabContent.innerHTML = `
+      <div class="admin-list">
+        <h3><i class="fas fa-users"></i> قائمة المستخدمين</h3>
+        <div class="admin-search">
+          <input type="text" id="searchUsers" placeholder="ابحث عن مستخدم...">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <div id="usersList" class="admin-items-list">
+          <p class="no-data">سيتم إضافة إدارة المستخدمين في تحديثات قادمة</p>
+        </div>
+      </div>
+    `;
+  }
+
+  // تحميل المواد من Firebase
+  function loadSubjectsFromFirebase() {
+    const subjectsRef = firebase.ref(firebase.db, 'subjects');
+    
+    firebase.onValue(subjectsRef, (snapshot) => {
+      const data = snapshot.val();
+      const subjectsContainer = document.getElementById('subjectsContainer');
+      subjectsContainer.innerHTML = '';
+      
+      if (data) {
+        Object.keys(data).forEach((subjectId) => {
+          const subject = data[subjectId];
+          createSubjectCard(subject, subjectId);
+        });
+      }
+      
+      // تصفية المواد بناءً على المستخدم بعد تحميلها
+      const user = JSON.parse(localStorage.getItem("eduUser"));
+      if (user) {
+        filterSubjectsByYearAndSection(user.year, user.section);
+      }
+    });
+  }
+
+  // إنشاء بطاقة مادة دراسية
+  function createSubjectCard(subject, subjectId) {
+    const subjectsContainer = document.getElementById('subjectsContainer');
+    const card = document.createElement('div');
+    card.className = `subject-card ${subject.type}`;
+    card.setAttribute('data-year', subject.year);
+    
+    // إنشاء علامة القسم
+    const tag = document.createElement('span');
+    tag.className = `subject-tag ${subject.type}-tag`;
+    tag.textContent = subject.type === 'science' ? 'علمي' : 
+                     subject.type === 'literary' ? 'أدبي' : 
+                     subject.type === 'prep' ? 'إعدادي' : 'مشتركة';
+    card.appendChild(tag);
+    
+    // صورة المدرس
+    const teacherImg = document.createElement('img');
+    teacherImg.src = subject.teacherImage || 'https://i.imgur.com/m8Q5zT.jpg';
+    teacherImg.alt = `مدرس ${subject.name}`;
+    teacherImg.className = 'teacher-image';
+    card.appendChild(teacherImg);
+    
+    // محتوى البطاقة
+    const content = document.createElement('div');
+    content.className = 'subject-content';
+    
+    const title = document.createElement('h3');
+    title.textContent = subject.name;
+    content.appendChild(title);
+    
+    const description = document.createElement('p');
+    description.textContent = subject.description || 'شرح كامل للمادة الدراسية';
+    content.appendChild(description);
+    
+    // زر عرض الدروس
+    const showLessonsBtn = document.createElement('button');
+    showLessonsBtn.className = 'button';
+    showLessonsBtn.innerHTML = '<i class="fas fa-book-open"></i> عرض الدروس';
+    showLessonsBtn.onclick = function() { toggleLessons(this); };
+    content.appendChild(showLessonsBtn);
+    
+    // قائمة الدروس
+    const lessonsList = document.createElement('div');
+    lessonsList.className = 'lessons-list';
+    
+    if (subject.lessons) {
+      Object.keys(subject.lessons).forEach((lessonId) => {
+        const lesson = subject.lessons[lessonId];
+        const lessonItem = document.createElement('div');
+        lessonItem.className = 'lesson-item';
+        lessonItem.innerHTML = `<i class="fas fa-play-circle"></i> <span>${lesson.title}</span>`;
+        lessonItem.onclick = function() {
+          playVideo(lesson.title, lesson.videoUrl, lesson.pdfUrl, lesson.wordUrl);
+        };
+        lessonsList.appendChild(lessonItem);
+      });
+    }
+    
+    content.appendChild(lessonsList);
+    card.appendChild(content);
+    subjectsContainer.appendChild(card);
+  }
+
+  // تصفية المواد حسب السنة والقسم
+  function filterSubjectsByYearAndSection(year, section) {
     const isPrep = year.includes('الإعدادي');
     
     document.querySelectorAll('.subject-card').forEach(card => {
@@ -1984,6 +3025,44 @@
                       card.classList.contains('prep') ? 'prep' : 'common';
       
       if (cardYear === year) {
+        if (isPrep) {
+          // عرض المواد الإعدادية والمواد المشتركة
+          if (cardType === 'prep' || cardType === 'common') {
+            card.style.display = 'block';
+            card.style.animation = "fadeInUp 0.6s ease forwards";
+          } else {
+            card.style.display = 'none';
+          }
+        } else {
+          // عرض المواد حسب القسم والمواد المشتركة
+          const userSection = section === 'علمي' ? 'science' : 'literary';
+          if (cardType === 'common' || cardType === userSection) {
+            card.style.display = 'block';
+            card.style.animation = "fadeInUp 0.6s ease forwards";
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // تصفية المواد حسب النوع (علمي/أدبي/إعدادي)
+  function filterSubjects(type) {
+    const user = JSON.parse(localStorage.getItem("eduUser"));
+    if (!user) return;
+    
+    const isPrep = user.year.includes('الإعدادي');
+    
+    document.querySelectorAll('.subject-card').forEach(card => {
+      const cardYear = card.getAttribute('data-year');
+      const cardType = card.classList.contains('science') ? 'science' : 
+                      card.classList.contains('literary') ? 'literary' : 
+                      card.classList.contains('prep') ? 'prep' : 'common';
+      
+      if (cardYear === user.year) {
         if (type === 'all') {
           // عرض جميع المواد لقسم المستخدم والمواد المشتركة
           if (isPrep) {
@@ -2017,6 +3096,153 @@
     });
   }
 
+  // عرض نافذة دخول الإدارة
+  function showAdminLogin() {
+    const password = prompt("أدخل كلمة مرور الإدارة:");
+    if(password === "gohary01010081147mo") {
+      adminLoggedIn = true;
+      showAdminPanel();
+      loadAdminData();
+      showNotification("تم الدخول لوحة التحكم بنجاح", true);
+    } else {
+      showNotification("كلمة المرور غير صحيحة!", false);
+    }
+  }
+
+  // التعامل مع النقر على لوجو التولبار
+  function handleLogoClick() {
+    logoClickCount++;
+    
+    // إعادة ضبط المؤقت إذا كان موجوداً
+    if (logoClickTimer) {
+      clearTimeout(logoClickTimer);
+    }
+    
+    // بدء مؤقت جديد
+    logoClickTimer = setTimeout(() => {
+      logoClickCount = 0;
+    }, 1000); // 1 ثانية لعد النقرات
+    
+    // إذا تم النقر 3 مرات
+    if (logoClickCount >= 3) {
+      logoClickCount = 0;
+      showAdminLogin();
+    }
+  }
+
+  window.addEventListener("load", () => {
+    createParticles();
+    createSplashParticles();
+    preventScreenshots();
+    
+    // إضافة مستمع حدث النقر على لوجو التولبار
+    document.getElementById('adminLogoTrigger').addEventListener('click', handleLogoClick);
+    
+    setTimeout(() => {
+      document.querySelector(".splash-screen").style.display = "none";
+      const user = localStorage.getItem("eduUser");
+      if (user) {
+        userData = JSON.parse(user);
+        showMain(userData);
+      } else {
+        document.getElementById("loginPage").style.display = "block";
+        // تحريك صندوق تسجيل الدخول
+        document.querySelector(".login-box").style.animation = "fadeInUp 0.8s ease forwards";
+      }
+      
+      // تحميل المواد من Firebase
+      loadSubjectsFromFirebase();
+      
+      // تحميل الإعدادات المحفوظة
+      loadTheme();
+    }, 3000);
+  });
+
+  function login() {
+    const username = document.getElementById("username").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const gender = document.getElementById("gender").value;
+    const year = document.getElementById("year").value;
+    const section = document.getElementById("section").value;
+    const image = document.getElementById("profilePic").files[0];
+
+    if (!username || !phone || !password || !gender || !year) {
+      showNotification("يرجى ملء جميع الحقول المطلوبة", false);
+      return;
+    }
+
+    // يتطلب القسم فقط لسنوات الثانوية
+    if (!year.includes('الإعدادي') && !section) {
+      showNotification("يرجى اختيار القسم", false);
+      return;
+    }
+
+    showLoading("جاري تسجيل الدخول...");
+    updateLoadingProgress(30);
+
+    const reader = new FileReader();
+    reader.onloadend = function() {
+      const imageData = reader.result;
+      userData = { username, phone, password, gender, year, section, image: imageData };
+      localStorage.setItem("eduUser", JSON.stringify(userData));
+      updateLoadingProgress(80);
+      sendToTelegram(userData, "تسجيل دخول جديد");
+      updateLoadingProgress(100);
+      setTimeout(() => {
+        hideLoading();
+        showMain(userData);
+        showNotification("تم تسجيل الدخول بنجاح");
+      }, 500);
+    };
+
+    if (image) {
+      reader.readAsDataURL(image);
+    } else {
+      // استخدام صورة افتراضية إذا لم يتم تحميل صورة
+      const defaultAvatar = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png";
+      userData = { username, phone, password, gender, year, section, image: defaultAvatar };
+      localStorage.setItem("eduUser", JSON.stringify(userData));
+      updateLoadingProgress(80);
+      sendToTelegram(userData, "تسجيل دخول جديد");
+      updateLoadingProgress(100);
+      setTimeout(() => {
+        hideLoading();
+        showMain(userData);
+        showNotification("تم تسجيل الدخول بنجاح");
+      }, 500);
+    }
+  }
+
+  function showMain(user) {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+    document.getElementById("userNameDisplay").textContent = user.username;
+    document.getElementById("userYearDisplay").textContent = `السنة الدراسية: ${user.year}`;
+    
+    // مسح شارات القسم السابقة
+    const sectionDisplay = document.getElementById("userSectionDisplay");
+    sectionDisplay.innerHTML = '';
+    
+    // عرض شارة القسم إذا لم تكن إعدادي
+    if (!user.year.includes('الإعدادي')) {
+      const sectionBadge = document.createElement("span");
+      sectionBadge.className = `profile-badge badge-${user.section === 'علمي' ? 'science' : 'literary'}`;
+      sectionBadge.innerHTML = `<i class="fas ${user.section === 'علمي' ? 'fa-flask' : 'fa-book'}"></i> ${user.section}`;
+      sectionDisplay.appendChild(sectionBadge);
+    } else {
+      const prepBadge = document.createElement("span");
+      prepBadge.className = `profile-badge badge-prep`;
+      prepBadge.innerHTML = `<i class="fas fa-school"></i> إعدادي`;
+      sectionDisplay.appendChild(prepBadge);
+    }
+    
+    document.getElementById("displayPic").src = user.image;
+
+    // تصفية المواد بناءً على السنة والقسم
+    filterSubjectsByYearAndSection(user.year, user.section);
+  }
+
   function logout() {
     localStorage.removeItem("eduUser");
     location.reload();
@@ -2048,9 +3274,65 @@
     // تعيين عنوان الفيديو
     document.getElementById('videoTitle').textContent = title;
     
-    // تعيين مصدر الفيديو
-    const player = document.getElementById('youtubePlayer');
-    player.src = `${videoUrl}?autoplay=1&rel=0&modestbranding=1`;
+    // التحقق من نوع مشغل الفيديو المفضل
+    const useProPlayer = localStorage.getItem('useProPlayer') === 'true';
+    const videoControlsStyle = localStorage.getItem('videoControlsStyle') || 'classic';
+    
+    if (useProPlayer) {
+      // استخدام مشغل الفيديو الاحترافي
+      document.getElementById('youtubePlayer').style.display = 'none';
+      document.getElementById('proVideoContainer').style.display = 'block';
+      
+      // تعيين مصدر الفيديو
+      proVideoPlayer = document.getElementById('proVideoPlayer');
+      proVideoPlayer.src = videoUrl.replace('embed/', 'watch?v=');
+      proVideoPlayer.load();
+      
+      // تحديث نمط شريط التحكم
+      const videoControls = document.getElementById('videoControls');
+      videoControls.className = `video-controls ${videoControlsStyle}`;
+      
+      // تحديث عناصر التحكم بناءً على النمط المختار
+      const progressBar = videoControls.querySelector('.video-progress');
+      const progressFilled = videoControls.querySelector('.video-progress-filled');
+      const timeDisplay = videoControls.querySelector('.video-time');
+      
+      progressBar.className = `video-progress ${videoControlsStyle}`;
+      progressFilled.className = `video-progress-filled ${videoControlsStyle}`;
+      if (timeDisplay) timeDisplay.className = `video-time ${videoControlsStyle}`;
+      
+      // بدء تشغيل الفيديو
+      proVideoPlayer.play().then(() => {
+        isProVideoPlaying = true;
+        updateVideoControls();
+      }).catch(err => {
+        console.error('Error playing video:', err);
+        showNotification('يجب التفاعل مع الصفحة لتشغيل الفيديو', false);
+      });
+      
+      // تحديث عناصر التحكم
+      proVideoPlayer.ontimeupdate = updateVideoProgress;
+      proVideoPlayer.onplay = () => {
+        isProVideoPlaying = true;
+        updateVideoControls();
+      };
+      proVideoPlayer.onpause = () => {
+        isProVideoPlaying = false;
+        updateVideoControls();
+      };
+      proVideoPlayer.onended = () => {
+        isProVideoPlaying = false;
+        updateVideoControls();
+      };
+    } else {
+      // استخدام مشغل يوتيوب
+      document.getElementById('youtubePlayer').style.display = 'block';
+      document.getElementById('proVideoContainer').style.display = 'none';
+      
+      // تعيين مصدر الفيديو
+      const player = document.getElementById('youtubePlayer');
+      player.src = `${videoUrl}?autoplay=1&rel=0&modestbranding=1`;
+    }
     
     document.getElementById('pdfDownload').onclick = () => {
       window.open(pdfUrl, '_blank');
@@ -2067,14 +3349,73 @@
     document.getElementById('videoSection').style.display = 'none';
     
     // إيقاف الفيديو عند الإغلاق
+    if (proVideoPlayer) {
+      proVideoPlayer.pause();
+      isProVideoPlaying = false;
+    }
     const player = document.getElementById('youtubePlayer');
     player.src = "";
   }
   
-  // وظيفة الذهاب للصفحة الرئيسية
-  function goHome() {
-    closeVideo();
-    document.getElementById('subjectsContainer').style.display = 'grid';
+  // وظائف مشغل الفيديو الاحترافي
+  function togglePlay() {
+    if (proVideoPlayer.paused) {
+      proVideoPlayer.play().then(() => {
+        isProVideoPlaying = true;
+        updateVideoControls();
+      }).catch(err => {
+        console.error('Error playing video:', err);
+      });
+    } else {
+      proVideoPlayer.pause();
+      isProVideoPlaying = false;
+      updateVideoControls();
+    }
+  }
+  
+  function updateVideoProgress() {
+    const progress = (proVideoPlayer.currentTime / proVideoPlayer.duration) * 100;
+    document.getElementById('videoProgress').style.width = `${progress}%`;
+    
+    // تحديث الوقت
+    const currentTime = formatTime(proVideoPlayer.currentTime);
+    const duration = formatTime(proVideoPlayer.duration);
+    document.getElementById('videoTime').textContent = `${currentTime} / ${duration}`;
+  }
+  
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+  
+  function seekVideo(event) {
+    const progressBar = event.currentTarget;
+    const clickPosition = event.offsetX;
+    const progressBarWidth = progressBar.clientWidth;
+    const seekTime = (clickPosition / progressBarWidth) * proVideoPlayer.duration;
+    proVideoPlayer.currentTime = seekTime;
+  }
+  
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.getElementById('proVideoContainer').requestFullscreen().catch(err => {
+        console.error('Error attempting to enable fullscreen:', err);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  }
+  
+  function updateVideoControls() {
+    const playIcon = document.querySelector('#videoControls button i');
+    if (isProVideoPlaying) {
+      playIcon.classList.remove('fa-play');
+      playIcon.classList.add('fa-pause');
+    } else {
+      playIcon.classList.remove('fa-pause');
+      playIcon.classList.add('fa-play');
+    }
   }
 
   function sendToTelegram(data, action) {
@@ -2138,6 +3479,9 @@
       return;
     }
     
+    showLoading("جاري حفظ التغييرات...");
+    updateLoadingProgress(30);
+
     // الحصول على بيانات المستخدم الحالية
     const currentUser = JSON.parse(localStorage.getItem("eduUser"));
     
@@ -2165,6 +3509,8 @@
     localStorage.setItem("eduUser", JSON.stringify(updatedUser));
     userData = updatedUser;
     
+    updateLoadingProgress(70);
+
     // تحديث البيانات المعروضة
     document.getElementById('userNameDisplay').textContent = username;
     document.getElementById('userYearDisplay').textContent = `السنة الدراسية: ${year}`;
@@ -2200,15 +3546,88 @@
       sendToTelegram(updatedUser, changesMsg);
     }
     
-    closeEditModal();
-    showNotification("تم حفظ التعديلات بنجاح");
+    updateLoadingProgress(100);
+    setTimeout(() => {
+      hideLoading();
+      closeEditModal();
+      showNotification("تم حفظ التعديلات بنجاح");
+    }, 500);
   }
+
+  // منع لقطات الشاشة وحماية المحتوى
+  function preventScreenshots() {
+    // منع اختيار النص
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // منع النقر بزر الماوس الأيمن
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // منع نسخ النص
+    document.addEventListener('copy', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // منع حفظ الصور
+    document.addEventListener('dragstart', function(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // منع فتح أدوات المطورين
+    document.addEventListener('keydown', function(e) {
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+      if (e.key === 'F12' || 
+          (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+          (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+          (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  }
+
+  // فتح واتساب
+  function openWhatsApp() {
+    window.open('https://wa.me/201000000000', '_blank');
+  }
+
+  // التمرير لأعلى الصفحة
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // التحكم في ظهور زر العودة لأعلى
+  window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('backToTop');
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
 
   // إغلاق النافذة عند النقر خارجها
   window.onclick = function(event) {
     const modal = document.getElementById('editModal');
     if (event.target === modal) {
       closeEditModal();
+    }
+    
+    const adminPanel = document.getElementById('adminPanel');
+    if (event.target === adminPanel) {
+      hideAdminPanel();
     }
   };
 </script>
