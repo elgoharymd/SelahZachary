@@ -1227,7 +1227,7 @@
     /* زر العودة لأعلى الصفحة */
     .back-to-top {
       position: fixed;
-      bottom: 80px;
+      bottom: 20px;
       right: 20px;
       width: 50px;
       height: 50px;
@@ -1252,31 +1252,6 @@
     }
     
     .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    }
-    
-    /* زر واتساب عائم */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #25D366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      z-index: 999;
-      transition: all 0.3s;
-    }
-    
-    .whatsapp-float:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
@@ -1459,13 +1434,6 @@
         width: 40px;
         height: 40px;
         font-size: 16px;
-        bottom: 70px;
-      }
-      
-      .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
       }
     }
 
@@ -1966,6 +1934,17 @@
           تحميل
         </button>
       </div>
+      <div class="resource-item">
+        <i class="fas fa-question-circle"></i>
+        <div class="resource-info">
+          <h4>أسئلة الدرس</h4>
+          <p>اختبار ذاتي لقياس فهمك للدرس</p>
+        </div>
+        <button class="download-btn" id="quizBtn" onclick="window.open('https://elgoharymd.github.io/Quwez-selah-elazhare/', '_blank')">
+          <i class="fas fa-external-link-alt"></i>
+          الانتقال للاختبار
+        </button>
+      </div>
     </div>
   </div>
 
@@ -2054,11 +2033,6 @@
 <!-- زر العودة لأعلى الصفحة -->
 <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
   <i class="fas fa-arrow-up"></i>
-</div>
-
-<!-- زر واتساب عائم -->
-<div class="whatsapp-float" onclick="openWhatsApp()">
-  <i class="fab fa-whatsapp"></i>
 </div>
 
 <!-- لوحة التحكم الإدارية -->
@@ -3593,11 +3567,6 @@
         return false;
       }
     });
-  }
-
-  // فتح واتساب
-  function openWhatsApp() {
-    window.open('https://wa.me/201000000000', '_blank');
   }
 
   // التمرير لأعلى الصفحة
