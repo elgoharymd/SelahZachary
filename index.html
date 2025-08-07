@@ -11,51 +11,60 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     :root {
-      --primary-color: #4361ee;
-      --secondary-color: #3f37c9;
-      --accent-color: #4895ef;
-      --light-color: #f8f9fa;
-      --dark-color: #212529;
-      --success-color: #4cc9f0;
-      --warning-color: #f72585;
-      --science-color: #3a86ff;
-      --literary-color: #8338ec;
-      --prep-color: #4cc9f0;
-      --settings-color: #7209b7;
-      --bg-color: #f5f7fa;
-      --text-color: #212529;
+      --primary-color: #2c5cc5;
+      --secondary-color: #1a4393;
+      --accent-color: #4a90e2;
+      --light-color: #f8fafc;
+      --dark-color: #1e293b;
+      --success-color: #10b981;
+      --warning-color: #ef4444;
+      --science-color: #3b82f6;
+      --literary-color: #8b5cf6;
+      --prep-color: #06b6d4;
+      --common-color: #10b981;
+      --settings-color: #7e22ce;
+      --bg-color: #f1f5f9;
+      --text-color: #1e293b;
       --card-bg: #ffffff;
-      --shadow-color: rgba(0,0,0,0.1);
-      --theme-color-1: #4361ee;
-      --theme-color-2: #3a0ca3;
-      --theme-color-3: #f72585;
+      --shadow-color: rgba(0,0,0,0.05);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --theme-color-1: #2c5cc5;
+      --theme-color-2: #1a4393;
+      --theme-color-3: #d946ef;
+      --comment-bg: #f8fafc;
+      --comment-border: #e2e8f0;
     }
     
     .dark-mode {
-      --bg-color: #121212;
-      --text-color: #f8f9fa;
-      --card-bg: #1e1e1e;
+      --bg-color: #0f172a;
+      --text-color: #f8fafc;
+      --card-bg: #1e293b;
       --shadow-color: rgba(0,0,0,0.3);
-      --light-color: #2d2d2d;
-      --dark-color: #f8f9fa;
+      --light-color: #334155;
+      --dark-color: #f8fafc;
+      --glass-bg: rgba(30, 41, 59, 0.5);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --comment-bg: #1e293b;
+      --comment-border: #334155;
     }
     
     .theme-1 {
-      --primary-color: #4361ee;
-      --secondary-color: #3f37c9;
-      --accent-color: #4895ef;
+      --primary-color: #2c5cc5;
+      --secondary-color: #1a4393;
+      --accent-color: #4a90e2;
     }
     
     .theme-2 {
-      --primary-color: #3a0ca3;
-      --secondary-color: #480ca8;
-      --accent-color: #560bad;
+      --primary-color: #7c3aed;
+      --secondary-color: #6d28d9;
+      --accent-color: #8b5cf6;
     }
     
     .theme-3 {
-      --primary-color: #f72585;
-      --secondary-color: #b5179e;
-      --accent-color: #7209b7;
+      --primary-color: #d946ef;
+      --secondary-color: #a21caf;
+      --accent-color: #e879f9;
     }
     
     * {
@@ -72,70 +81,64 @@
     }
     
     body {
-      background: linear-gradient(135deg, var(--bg-color) 0%, var(--light-color) 100%);
+      background-color: var(--bg-color);
       min-height: 100vh;
       color: var(--text-color);
-      padding-top: 60px;
+      padding-top: 70px;
       transition: all 0.3s ease;
       overflow-x: hidden;
+      line-height: 1.6;
     }
     
-    /* شريط الأدوات المتموج الجديد */
-    .wave-toolbar {
+    /* شريط الأدوات الزجاجي الجديد */
+    .glass-toolbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 60px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      height: 70px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 25px;
       z-index: 1000;
-      box-shadow: 0 2px 10px var(--shadow-color);
-    }
-    
-    .wave-toolbar::before {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 100%;
-      height: 10px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%234361ee"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%234361ee"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%234361ee"/></svg>');
-      background-size: 1200px 100%;
-      background-repeat: repeat-x;
-      animation: wave 12s linear infinite;
-    }
-    
-    @keyframes wave {
-      0% { background-position-x: 0; }
-      100% { background-position-x: 1200px; }
+      box-shadow: 0 2px 20px var(--shadow-color);
+      border-bottom: 1px solid var(--glass-border);
     }
     
     .toolbar-logo {
       display: flex;
       align-items: center;
       cursor: pointer;
-    }
-    
-    .toolbar-logo img {
-      width: 40px;
-      height: 40px;
-      margin-left: 10px;
+      text-decoration: none;
       transition: transform 0.3s ease;
     }
     
+    .toolbar-logo:hover {
+      transform: translateY(-2px);
+    }
+    
+    .toolbar-logo img {
+      width: 45px;
+      height: 45px;
+      margin-left: 12px;
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
     .toolbar-logo:hover img {
-      transform: rotate(15deg);
+      transform: rotate(15deg) scale(1.1);
     }
     
     .toolbar-title {
-      color: white;
+      color: var(--text-color);
       font-weight: 700;
-      font-size: 1.2rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      font-size: 1.3rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
     .toolbar-actions {
@@ -144,26 +147,30 @@
     }
     
     .toolbar-btn {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-color);
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.3s;
-      font-size: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 18px;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
     
     .toolbar-btn:hover {
-      background: rgba(255,255,255,0.3);
-      transform: scale(1.1);
+      background: var(--accent-color);
+      color: white;
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
     }
     
-    /* Splash Screen Animation - تصميم احترافي */
+    /* شاشة التحميل الجديدة */
     .splash-screen {
       position: fixed;
       width: 100%;
@@ -174,7 +181,7 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      animation: fadeOut 1.5s ease forwards;
+      animation: fadeOut 1s ease forwards;
       animation-delay: 2.5s;
       overflow: hidden;
     }
@@ -187,40 +194,48 @@
       position: relative;
       z-index: 2;
       text-align: center;
+      padding: 30px;
+      border-radius: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
     
     .splash-logo {
-      width: 180px;
-      height: 180px;
+      width: 150px;
+      height: 150px;
       margin-bottom: 25px;
       animation: pulse 2s infinite, float 6s ease-in-out infinite;
       filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
       transform-style: preserve-3d;
       perspective: 1000px;
+      border-radius: 30px;
     }
     
     .splash-text {
       color: white;
-      font-size: 2.5rem;
-      font-weight: 700;
+      font-size: 2.2rem;
+      font-weight: 800;
       text-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       animation: fadeIn 1s ease both;
       animation-delay: 0.5s;
     }
     
     .splash-subtext {
-      color: rgba(255,255,255,0.8);
-      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
       margin-bottom: 30px;
       animation: fadeIn 1s ease both;
       animation-delay: 0.8s;
     }
     
     .loading-container {
-      width: 300px;
+      width: 280px;
       max-width: 80%;
-      height: 8px;
+      height: 6px;
       background: rgba(255,255,255,0.2);
       border-radius: 10px;
       overflow: hidden;
@@ -254,39 +269,15 @@
       animation: shimmer 2s infinite;
     }
     
-    /* Floating Particles Background */
-    .splash-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-    
-    .splash-particle {
-      position: absolute;
-      background: rgba(255,255,255,0.8);
-      border-radius: 50%;
-      animation: float-up linear infinite;
-      filter: blur(1px);
-    }
-    
-    /* أنيميشن شاشة التحميل الجديدة */
+    /* أنيميشن شاشة التحميل */
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
     }
     
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    
-    @keyframes float-up {
-      to {
-        transform: translateY(-100vh);
-      }
+      50% { transform: scale(1.05); }
     }
     
     @keyframes shimmer {
@@ -310,40 +301,16 @@
       }
     }
     
-    /* Floating Particles */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-    
-    .particle {
-      position: absolute;
-      background: rgba(255,255,255,0.5);
-      border-radius: 50%;
-      animation: float linear infinite;
-    }
-    
-    @keyframes float {
-      to {
-        transform: translateY(-100vh);
-      }
-    }
-    
     /* Main Layout */
     .login-container, .container {
       display: none;
-      padding: 20px;
+      padding: 25px;
       max-width: 1200px;
       margin: 0 auto;
       animation: fadeIn 0.8s ease;
     }
     
-    /* Login Page */
+    /* Login Page - تصميم جديد */
     .login-box {
       max-width: 480px;
       margin: 40px auto;
@@ -357,6 +324,7 @@
       position: relative;
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
     .login-box:hover {
@@ -383,7 +351,7 @@
       width: 100px;
       margin-bottom: 15px;
       transition: all 0.3s;
-      border-radius: 50%;
+      border-radius: 20px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
@@ -411,7 +379,8 @@
     }
     
     .login-header p {
-      color: #666;
+      color: var(--text-color);
+      opacity: 0.8;
       font-size: 0.9rem;
     }
     
@@ -425,7 +394,8 @@
       left: 15px;
       top: 50%;
       transform: translateY(-50%);
-      color: #999;
+      color: var(--text-color);
+      opacity: 0.6;
       transition: all 0.3s;
     }
     
@@ -433,23 +403,25 @@
     .login-box select {
       width: 100%;
       padding: 15px 15px 15px 45px;
-      border: 2px solid #e9ecef;
-      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 12px;
       font-size: 16px;
       transition: all 0.3s;
       background-color: var(--card-bg);
       color: var(--text-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     
     .login-box input:focus,
     .login-box select:focus {
       border-color: var(--accent-color);
-      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
       outline: none;
     }
     
     .login-box input:focus + i {
       color: var(--accent-color);
+      opacity: 1;
       transform: translateY(-50%) scale(1.2);
     }
     
@@ -460,39 +432,27 @@
       padding: 12px 15px;
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: white;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       text-align: center;
       margin-bottom: 20px;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-size: 16px;
       position: relative;
       overflow: hidden;
-    }
-    
-    .upload-label::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: all 0.5s;
-    }
-    
-    .upload-label:hover::after {
-      left: 100%;
+      border: none;
+      box-shadow: 0 4px 15px rgba(44, 92, 197, 0.3);
     }
     
     .upload-label:hover {
       background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(44, 92, 197, 0.4);
     }
     
     .upload-label i {
       margin-left: 8px;
+      color: white;
     }
     
     #profilePic {
@@ -504,13 +464,13 @@
       color: white;
       border: none;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 16px;
       font-weight: 500;
       width: 100%;
       cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(44, 92, 197, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -518,24 +478,9 @@
       overflow: hidden;
     }
     
-    .button::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: all 0.5s;
-    }
-    
-    .button:hover::after {
-      left: 100%;
-    }
-    
     .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(44, 92, 197, 0.4);
     }
     
     .button:active {
@@ -546,23 +491,17 @@
       margin-left: 8px;
     }
     
-    /* Main Page */
+    /* Main Page - تصميم جديد */
     .profile {
       text-align: center;
       margin-bottom: 40px;
       animation: fadeIn 0.8s ease forwards;
       position: relative;
-    }
-    
-    .profile::after {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+      padding: 30px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
     .profile img {
@@ -573,7 +512,8 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       object-fit: cover;
       margin-bottom: 15px;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
     }
     
     .profile img:hover {
@@ -588,19 +528,21 @@
     }
     
     .profile p {
-      color: #666;
+      color: var(--text-color);
+      opacity: 0.8;
       margin-bottom: 20px;
     }
     
     .profile-badge {
       display: inline-block;
-      padding: 5px 15px;
+      padding: 6px 16px;
       border-radius: 20px;
       font-weight: 500;
       font-size: 0.8rem;
       margin: 5px;
       color: white;
       transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     
     .profile-badge:hover {
@@ -619,11 +561,15 @@
       background: var(--prep-color);
     }
     
+    .badge-common {
+      background: var(--common-color);
+    }
+    
     .badge-settings {
       background: var(--settings-color);
     }
     
-    /* Profile Edit Modal */
+    /* Profile Edit Modal - تصميم جديد */
     .modal {
       display: none;
       position: fixed;
@@ -632,6 +578,8 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       z-index: 1000;
       justify-content: center;
       align-items: center;
@@ -640,16 +588,17 @@
     
     .modal-content {
       background: var(--card-bg);
-      border-radius: 15px;
+      border-radius: 20px;
       width: 90%;
       max-width: 500px;
       padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
       animation: modalFadeIn 0.3s ease;
       position: relative;
       transform-style: preserve-3d;
       perspective: 1000px;
       transition: transform 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
     .modal-content:hover {
@@ -673,7 +622,7 @@
       align-items: center;
       margin-bottom: 20px;
       padding-bottom: 15px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
     
     .modal-header h3 {
@@ -686,13 +635,15 @@
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      color: #999;
+      color: var(--text-color);
+      opacity: 0.6;
       transition: all 0.3s;
     }
     
     .close-modal:hover {
       color: var(--warning-color);
       transform: rotate(90deg);
+      opacity: 1;
     }
     
     .profile-pic-container {
@@ -722,33 +673,34 @@
       cursor: pointer;
       font-size: 0.9rem;
       transition: color 0.3s ease;
+      font-weight: 500;
     }
     
     .profile-pic-edit:hover {
       color: var(--secondary-color);
     }
     
-    /* Filter Section */
+    /* Filter Section - تصميم جديد */
     .filter-section {
       display: flex;
       justify-content: center;
       margin-bottom: 30px;
       flex-wrap: wrap;
       gap: 15px;
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--glass-bg);
       backdrop-filter: blur(10px);
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
       animation: fadeIn 0.8s ease;
     }
     
-    /* تصميم الأزرار المربعة المعدلة */
     .filter-btn {
       width: 100px;
       height: 100px;
-      border-radius: 15px;
+      border-radius: 20px;
       border: none;
       color: white;
       font-weight: 700;
@@ -762,25 +714,8 @@
       position: relative;
       overflow: hidden;
       font-size: 14px;
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       text-align: center;
-    }
-    
-    /* تأثيرات الأنيميشن عند التحويم */
-    .filter-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: all 0.5s ease;
-      transform: translateX(-100%);
-    }
-    
-    .filter-btn:hover::before {
-      transform: translateX(100%);
     }
     
     .filter-btn:hover {
@@ -793,7 +728,6 @@
       transform: translateY(-3px) scale(1.05);
     }
     
-    /* أيقونات الأزرار */
     .filter-btn i {
       font-size: 30px;
       margin-bottom: 10px;
@@ -804,29 +738,35 @@
       transform: scale(1.2);
     }
     
-    /* ألوان الأزرار مع حواف مضيئة */
     .filter-btn[onclick="filterSubjects('science')"] {
-      background: linear-gradient(135deg, var(--science-color), #2a6fd1);
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 0 15px rgba(58, 134, 255, 0.5), 
+      background: linear-gradient(135deg, var(--science-color), #2563eb);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), 
                   inset 0 0 10px rgba(255, 255, 255, 0.2);
     }
     
     .filter-btn[onclick="filterSubjects('literary')"] {
-      background: linear-gradient(135deg, var(--literary-color), #6a2bc4);
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 0 15px rgba(131, 56, 236, 0.5), 
+      background: linear-gradient(135deg, var(--literary-color), #7e22ce);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.5), 
                   inset 0 0 10px rgba(255, 255, 255, 0.2);
     }
     
     .filter-btn[onclick="filterSubjects('prep')"] {
-      background: linear-gradient(135deg, var(--prep-color), #3ab7d8);
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 0 15px rgba(76, 201, 240, 0.5), 
+      background: linear-gradient(135deg, var(--prep-color), #0891b2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.5), 
                   inset 0 0 10px rgba(255, 255, 255, 0.2);
     }
     
-    /* Subjects Sections */
+    .filter-btn[onclick="filterSubjects('common')"] {
+      background: linear-gradient(135deg, var(--common-color), #059669);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.5), 
+                  inset 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Subjects Sections - تصميم جديد */
     .subjects-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -836,15 +776,16 @@
     
     .subject-card {
       background: var(--card-bg);
-      border-radius: 15px;
+      border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       animation: fadeInUp 0.6s ease forwards;
       position: relative;
       border-top: 4px solid var(--primary-color);
       transform-style: preserve-3d;
       perspective: 1000px;
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
     .subject-card:hover {
@@ -861,7 +802,7 @@
     }
     
     .subject-card.common {
-      border-top-color: var(--accent-color);
+      border-top-color: var(--common-color);
     }
     
     .subject-card.prep {
@@ -872,8 +813,8 @@
       position: absolute;
       top: 15px;
       left: 15px;
-      padding: 3px 10px;
-      border-radius: 15px;
+      padding: 4px 12px;
+      border-radius: 20px;
       font-size: 0.7rem;
       font-weight: 500;
       color: white;
@@ -890,7 +831,7 @@
     }
     
     .common-tag {
-      background: var(--accent-color);
+      background: var(--common-color);
     }
     
     .prep-tag {
@@ -919,7 +860,8 @@
     }
     
     .subject-content p {
-      color: #666;
+      color: var(--text-color);
+      opacity: 0.8;
       margin-bottom: 15px;
       font-size: 0.9rem;
       line-height: 1.5;
@@ -928,7 +870,7 @@
     .lessons-list {
       display: none;
       margin-top: 15px;
-      border-top: 1px solid #eee;
+      border-top: 1px solid rgba(0,0,0,0.1);
       padding-top: 15px;
       animation: fadeIn 0.3s ease;
     }
@@ -937,13 +879,13 @@
       display: flex;
       align-items: center;
       padding: 10px 0;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
       cursor: pointer;
       transition: all 0.2s;
     }
     
     .lesson-item:hover {
-      background-color: #f9f9f9;
+      background-color: rgba(0,0,0,0.03);
       transform: translateX(-5px);
     }
     
@@ -952,15 +894,16 @@
       color: var(--accent-color);
     }
     
-    /* Video Player Section */
+    /* Video Player Section - تصميم جديد */
     .video-section {
       display: none;
       margin-top: 40px;
       background: var(--card-bg);
-      border-radius: 15px;
+      border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       animation: fadeIn 0.5s ease;
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
     .video-header {
@@ -989,14 +932,12 @@
       transform: rotate(90deg);
     }
     
-    /* مشغل يوتيوب الجديد */
     .youtube-player {
       width: 100%;
       height: 500px;
       border: none;
     }
     
-    /* مشغل الفيديو الاحترافي */
     .pro-video-container {
       width: 100%;
       position: relative;
@@ -1015,8 +956,6 @@
       border: none;
     }
     
-    /* أنماط مختلفة لأشرطة التحكم في الفيديو */
-    /* النمط الأول - كلاسيكي */
     .video-controls.classic {
       display: flex;
       justify-content: space-between;
@@ -1026,7 +965,6 @@
       color: white;
     }
     
-    /* النمط الثاني - مدمج */
     .video-controls.minimal {
       display: flex;
       justify-content: center;
@@ -1046,7 +984,6 @@
       opacity: 1;
     }
     
-    /* النمط الثالث - حديث */
     .video-controls.modern {
       display: flex;
       flex-direction: column;
@@ -1131,20 +1068,21 @@
     
     .video-resources {
       padding: 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
     
     .resource-item {
       display: flex;
       align-items: center;
-      padding: 10px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 12px;
       margin-bottom: 10px;
-      background: #f9f9f9;
-      transition: all 0.3s;
+      background: rgba(0,0,0,0.03);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .resource-item:hover {
-      background: #f0f0f0;
+      background: rgba(0,0,0,0.05);
       transform: translateX(5px);
     }
     
@@ -1164,7 +1102,8 @@
     }
     
     .resource-info p {
-      color: #666;
+      color: var(--text-color);
+      opacity: 0.7;
       font-size: 0.8rem;
     }
     
@@ -1172,7 +1111,7 @@
       display: inline-flex;
       align-items: center;
       padding: 8px 15px;
-      background: linear-gradient(to right, var(--success-color), #3a86ff);
+      background: linear-gradient(to right, var(--success-color), #3b82f6);
       color: white;
       border-radius: 8px;
       text-decoration: none;
@@ -1180,31 +1119,160 @@
       transition: all 0.3s;
       border: none;
       cursor: pointer;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.2);
     }
     
     .download-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(58, 134, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
     }
     
     .download-btn i {
       margin-left: 5px;
     }
     
-    /* Notification */
+    /* نظام التعليقات الجديد */
+    .comments-section {
+      padding: 20px;
+      display: none;
+    }
+    
+    .comments-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      background: var(--light-color);
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--text-color);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    
+    .comments-toggle:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+    
+    .comments-toggle i {
+      margin-left: 8px;
+      transition: transform 0.3s;
+    }
+    
+    .comments-toggle.active i {
+      transform: rotate(180deg);
+    }
+    
+    .comments-container {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 20px;
+      padding-right: 10px;
+    }
+    
+    .comment-form {
+      display: flex;
+      margin-top: 20px;
+      gap: 10px;
+    }
+    
+    .comment-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid var(--comment-border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      color: var(--text-color);
+      resize: none;
+      height: 50px;
+      transition: all 0.3s;
+    }
+    
+    .comment-input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    }
+    
+    .comment-submit {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .comment-submit:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    
+    .comment-item {
+      background: var(--comment-bg);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid var(--comment-border);
+      transition: all 0.3s;
+    }
+    
+    .comment-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .comment-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .comment-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 10px;
+      border: 2px solid var(--accent-color);
+    }
+    
+    .comment-user {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .comment-time {
+      font-size: 0.8rem;
+      color: var(--text-color);
+      opacity: 0.7;
+      margin-right: 10px;
+    }
+    
+    .comment-text {
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+    
+    /* Notification - تصميم جديد */
     .notification {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: var(--card-bg);
       padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
       display: flex;
       align-items: center;
       z-index: 1000;
       transform: translateX(150%);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
     .notification.show {
@@ -1224,7 +1292,7 @@
       color: var(--warning-color);
     }
     
-    /* زر العودة لأعلى الصفحة */
+    /* زر العودة لأعلى الصفحة - تصميم جديد */
     .back-to-top {
       position: fixed;
       bottom: 20px;
@@ -1243,7 +1311,8 @@
       z-index: 999;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
     }
     
     .back-to-top.show {
@@ -1252,7 +1321,7 @@
     }
     
     .back-to-top:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.1);
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
     
@@ -1314,15 +1383,14 @@
         height: 300px;
       }
       
-      .wave-toolbar {
-        height: 50px;
+      .glass-toolbar {
+        height: 60px;
       }
       
       .toolbar-title {
         font-size: 1rem;
       }
       
-      /* تعديلات شاشة التحميل للهواتف */
       .splash-logo {
         width: 120px;
         height: 120px;
@@ -1336,30 +1404,8 @@
         font-size: 1rem;
       }
       
-      /* تعديلات صفحة الإعدادات للهواتف */
-      .settings-content {
-        max-height: 85vh;
-        padding: 20px 15px;
-      }
-      
-      .settings-option {
-        padding: 12px 10px;
-      }
-      
-      .toolbar-mode-options {
-        flex-direction: column;
-      }
-      
-      .toolbar-mode-btn {
-        width: 100%;
-      }
-      
-      .theme-options {
-        flex-direction: column;
-      }
-      
-      .theme-btn {
-        width: 100%;
+      .comments-container {
+        max-height: 300px;
       }
     }
 
@@ -1379,8 +1425,8 @@
       }
       
       .toolbar-logo img {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
       }
       
       .toolbar-title {
@@ -1388,12 +1434,11 @@
       }
       
       .toolbar-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
       }
       
-      /* تعديلات شاشة التحميل للهواتف الصغيرة */
       .splash-logo {
         width: 100px;
         height: 100px;
@@ -1407,42 +1452,22 @@
         font-size: 0.9rem;
       }
       
-      .loading-container {
-        height: 6px;
-      }
-      
-      /* تعديلات صفحة الإعدادات للهواتف الصغيرة */
-      .settings-content {
-        max-height: 90vh;
-      }
-      
-      .settings-option {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      
-      .settings-label {
-        width: 100%;
-      }
-      
-      .switch {
-        align-self: flex-end;
-      }
-      
       .back-to-top {
         width: 40px;
         height: 40px;
         font-size: 16px;
       }
+      
+      .comment-form {
+        flex-direction: column;
+      }
+      
+      .comment-submit {
+        padding: 10px;
+      }
     }
 
-    /* إضافة أنماط للعناصر المخفية */
-    .hidden-element {
-      display: none !important;
-    }
-    
-    /* تنسيقات لوحة الإدارة */
+    /* لوحة الإدارة - تصميم جديد */
     .admin-panel {
       position: fixed;
       top: 0;
@@ -1450,6 +1475,8 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       z-index: 2000;
       display: none;
       justify-content: center;
@@ -1459,17 +1486,18 @@
 
     .admin-container {
       background: var(--card-bg);
-      border-radius: 15px;
+      border-radius: 20px;
       width: 90%;
       max-width: 1000px;
       max-height: 90vh;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
       animation: slideUp 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .admin-header {
-      background: linear-gradient(to right, var(--primary-color), #e65100);
+      background: linear-gradient(to right, var(--primary-color), #c2410c);
       color: white;
       padding: 15px 20px;
       display: flex;
@@ -1480,6 +1508,9 @@
     .admin-header h2 {
       margin: 0;
       font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .admin-close-btn {
@@ -1498,7 +1529,7 @@
     .admin-tabs {
       display: flex;
       background: var(--light-color);
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
     .admin-tab {
@@ -1511,6 +1542,10 @@
       color: var(--text-color);
       transition: all 0.3s;
       border-bottom: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
     }
 
     .admin-tab.active {
@@ -1521,10 +1556,6 @@
 
     .admin-tab:hover {
       background: rgba(0,0,0,0.05);
-    }
-
-    .admin-tab i {
-      margin-left: 5px;
     }
 
     .admin-tab-content {
@@ -1541,8 +1572,9 @@
     .admin-form {
       background: rgba(0,0,0,0.03);
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 15px;
       margin-bottom: 20px;
+      border: 1px solid rgba(0,0,0,0.05);
     }
 
     .admin-form h3 {
@@ -1570,36 +1602,47 @@
     .admin-form textarea {
       width: 100%;
       padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 10px;
       font-size: 16px;
       background: var(--card-bg);
       color: var(--text-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .admin-form input:focus,
+    .admin-form select:focus,
+    .admin-form textarea:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+      outline: none;
     }
 
     .admin-btn {
-      background: linear-gradient(to right, var(--primary-color), #e65100);
+      background: linear-gradient(to right, var(--primary-color), #c2410c);
       color: white;
       border: none;
       padding: 12px 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 16px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       width: 100%;
       margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .admin-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 109, 0, 0.3);
+      box-shadow: 0 6px 20px rgba(194, 65, 12, 0.3);
     }
 
     .admin-list {
       background: var(--card-bg);
-      border-radius: 10px;
+      border-radius: 15px;
       padding: 15px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.05);
     }
 
     .admin-list h3 {
@@ -1618,10 +1661,12 @@
 
     .admin-search input {
       flex: 1;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px 0 0 8px;
+      padding: 10px 15px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 10px 0 0 10px;
       font-size: 14px;
+      background: var(--card-bg);
+      color: var(--text-color);
     }
 
     .admin-search button {
@@ -1629,8 +1674,13 @@
       color: white;
       border: none;
       padding: 0 15px;
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 10px 10px 0;
       cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .admin-search button:hover {
+      background: var(--secondary-color);
     }
 
     .admin-items-list {
@@ -1641,12 +1691,13 @@
     .admin-item {
       background: var(--light-color);
       padding: 12px;
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(0,0,0,0.05);
     }
 
     .admin-item:hover {
@@ -1666,13 +1717,14 @@
 
     .admin-item-actions button:hover {
       color: var(--primary-color);
+      transform: scale(1.1);
     }
 
     .admin-item-actions .delete-btn:hover {
       color: var(--warning-color);
     }
 
-    /* Loading Overlay */
+    /* Loading Overlay - تصميم جديد */
     .loading-overlay {
       position: fixed;
       top: 0;
@@ -1680,6 +1732,8 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       z-index: 3000;
       display: none;
       justify-content: center;
@@ -1690,10 +1744,12 @@
     .loading-overlay-content {
       background: var(--card-bg);
       padding: 30px;
-      border-radius: 15px;
+      border-radius: 20px;
       text-align: center;
       max-width: 400px;
       width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .loading-overlay-spinner {
@@ -1708,7 +1764,7 @@
 
     .loading-overlay-progress {
       width: 100%;
-      height: 10px;
+      height: 8px;
       background: var(--light-color);
       border-radius: 5px;
       margin-top: 15px;
@@ -1741,11 +1797,11 @@
 
 <body>
 
-<!-- الشريط المتموج الجديد -->
-<div class="wave-toolbar" id="mainToolbar">
+<!-- الشريط الزجاجي الجديد -->
+<div class="glass-toolbar" id="mainToolbar">
   <div class="toolbar-logo" id="adminLogoTrigger">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="Logo">
-    <div class="toolbar-title"> سلاح الأزهري</div>
+    <div class="toolbar-title">سلاح الأزهري</div>
   </div>
   
   <div class="toolbar-actions" id="toolbarActions">
@@ -1758,12 +1814,8 @@
   </div>
 </div>
 
-<!-- Floating Particles Background -->
-<div class="particles" id="particles"></div>
-
-<!-- Splash Screen - تصميم احترافي -->
+<!-- Splash Screen - تصميم جديد -->
 <div class="splash-screen">
-  <div class="splash-particles" id="splashParticles"></div>
   <div class="splash-content">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl2U0dK3GQapnEsEh2Ds0Op1CjFWK8tQHa0lxwTC1Vh03TIN887E0oPdsog1hBbIC8dT-s-ze_TuabsepKJj4D7_a1bejb33oRxVGVhaj-iLWsGJxVP1mjTwa6QmRCrJCc6WmwbqwSdngjiReaTmknhOQlG5pki4pkThY5FvtqRNmTFgxyGLj-Z7UMRwdI/s1080/Selah%20Elazhary%20Transperant%20logo.png" alt="Logo" class="splash-logo">
     <h1 class="splash-text">منصة سلاح الأزهري</h1>
@@ -1854,7 +1906,7 @@
         <i class="fas fa-user-edit"></i>
         تعديل الملف الشخصي
       </button>
-      <button class="button" id="logoutMainBtn" onclick="logout()" style="width: auto; padding: 10px 20px; background: linear-gradient(to right, var(--warning-color), #f72585);">
+      <button class="button" id="logoutMainBtn" onclick="logout()" style="width: auto; padding: 10px 20px; background: linear-gradient(to right, var(--warning-color), #ef4444);">
         <i class="fas fa-sign-out-alt"></i>
         تسجيل الخروج
       </button>
@@ -1875,6 +1927,10 @@
       <i class="fas fa-school"></i>
       إعدادي
     </button>
+    <button class="filter-btn" onclick="filterSubjects('common')">
+      <i class="fas fa-book"></i>
+      مشتركة
+    </button>
   </div>
 
   <!-- Video Player Section -->
@@ -1886,7 +1942,7 @@
       </button>
     </div>
     
-    <!-- مشغل يوتيوب الجديد -->
+    <!-- مشغل يوتيوب -->
     <iframe id="youtubePlayer" class="youtube-player" 
             src=""
             frameborder="0" 
@@ -1946,6 +2002,25 @@
         </button>
       </div>
     </div>
+    
+    <!-- قسم التعليقات -->
+    <button class="comments-toggle" id="commentsToggle" onclick="toggleComments()">
+      <i class="fas fa-comments"></i>
+      عرض التعليقات
+    </button>
+    
+    <div class="comments-section" id="commentsSection">
+      <div class="comments-container" id="commentsContainer">
+        <!-- سيتم ملء التعليقات هنا -->
+      </div>
+      
+      <div class="comment-form">
+        <textarea class="comment-input" id="commentInput" placeholder="أضف تعليقك..."></textarea>
+        <button class="comment-submit" onclick="addComment()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- Subjects Container -->
@@ -1959,7 +2034,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <h3>تعديل الملف الشخصي</h3>
-      <button class="close-modal" onclick="closeEditModal()">&times;</button>
+      <button class="close-modal" onclick="closeEditModal()">×</button>
     </div>
     
     <div class="profile-pic-container">
@@ -2239,38 +2314,7 @@
   let isProVideoPlaying = false;
   let logoClickCount = 0;
   let logoClickTimer = null;
-
-  // إنشاء جسيمات لشاشة التحميل
-  function createSplashParticles() {
-    const container = document.getElementById('splashParticles');
-    const particleCount = 30;
-    
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('splash-particle');
-      
-      // حجم عشوائي بين 3px و8px
-      const size = Math.random() * 5 + 3;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      
-      // موقع عشوائي
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.top = `${Math.random() * 100}%`;
-      
-      // شفافية عشوائية
-      particle.style.opacity = Math.random() * 0.5 + 0.3;
-      
-      // مدة حركة عشوائية بين 10s و20s
-      const duration = Math.random() * 10 + 10;
-      particle.style.animationDuration = `${duration}s`;
-      
-      // تأخير عشوائي
-      particle.style.animationDelay = `${Math.random() * 5}s`;
-      
-      container.appendChild(particle);
-    }
-  }
+  let currentVideoId = null;
 
   // Dark Mode Toggle
   document.getElementById('darkModeToggle').addEventListener('click', function() {
@@ -2319,35 +2363,6 @@
       document.getElementById('editSection').value = '';
     } else {
       sectionGroup.style.display = 'block';
-    }
-  }
-
-  // إنشاء جسيمات عائمة
-  function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 30;
-    
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      
-      // حجم عشوائي بين 3px و8px
-      const size = Math.random() * 5 + 3;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      
-      // موقع عشوائي
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.top = `${Math.random() * 100}%`;
-      
-      // مدة حركة عشوائية بين 10s و20s
-      const duration = Math.random() * 10 + 10;
-      particle.style.animationDuration = `${duration}s`;
-      
-      // تأخير عشوائي
-      particle.style.animationDelay = `${Math.random() * 5}s`;
-      
-      particlesContainer.appendChild(particle);
     }
   }
 
@@ -2977,7 +2992,7 @@
         lessonItem.className = 'lesson-item';
         lessonItem.innerHTML = `<i class="fas fa-play-circle"></i> <span>${lesson.title}</span>`;
         lessonItem.onclick = function() {
-          playVideo(lesson.title, lesson.videoUrl, lesson.pdfUrl, lesson.wordUrl);
+          playVideo(lesson.title, lesson.videoUrl, lesson.pdfUrl, lesson.wordUrl, `${subjectId}_${lessonId}`);
         };
         lessonsList.appendChild(lessonItem);
       });
@@ -3023,7 +3038,7 @@
     });
   }
 
-  // تصفية المواد حسب النوع (علمي/أدبي/إعدادي)
+  // تصفية المواد حسب النوع (علمي/أدبي/إعدادي/مشتركة)
   function filterSubjects(type) {
     const user = JSON.parse(localStorage.getItem("eduUser"));
     if (!user) return;
@@ -3055,9 +3070,6 @@
               card.style.display = 'none';
             }
           }
-        } else if (type === 'prep' && cardType === 'prep') {
-          card.style.display = 'block';
-          card.style.animation = "fadeInUp 0.6s ease forwards";
         } else if (type === cardType) {
           card.style.display = 'block';
           card.style.animation = "fadeInUp 0.6s ease forwards";
@@ -3105,10 +3117,6 @@
   }
 
   window.addEventListener("load", () => {
-    createParticles();
-    createSplashParticles();
-    preventScreenshots();
-    
     // إضافة مستمع حدث النقر على لوجو التولبار
     document.getElementById('adminLogoTrigger').addEventListener('click', handleLogoClick);
     
@@ -3126,9 +3134,6 @@
       
       // تحميل المواد من Firebase
       loadSubjectsFromFirebase();
-      
-      // تحميل الإعدادات المحفوظة
-      loadTheme();
     }, 3000);
   });
 
@@ -3240,7 +3245,9 @@
   }
 
   // وظيفة تشغيل الفيديو المعدلة لاستخدام رابط يوتيوب مباشر
-  function playVideo(title, videoUrl, pdfUrl, wordUrl) {
+  function playVideo(title, videoUrl, pdfUrl, wordUrl, videoId) {
+    currentVideoId = videoId;
+    
     // إخفاء حاوية المواد وعرض قسم الفيديو
     document.getElementById('subjectsContainer').style.display = 'none';
     document.getElementById('videoSection').style.display = 'block';
@@ -3315,6 +3322,9 @@
     document.getElementById('wordDownload').onclick = () => {
       window.open(wordUrl, '_blank');
     };
+    
+    // تحميل التعليقات
+    loadComments();
   }
   
   // وظيفة إغلاق الفيديو
@@ -3329,6 +3339,10 @@
     }
     const player = document.getElementById('youtubePlayer');
     player.src = "";
+    
+    // إخفاء التعليقات
+    document.getElementById('commentsSection').style.display = 'none';
+    document.getElementById('commentsToggle').classList.remove('active');
   }
   
   // وظائف مشغل الفيديو الاحترافي
@@ -3599,6 +3613,101 @@
       hideAdminPanel();
     }
   };
+  
+  // نظام التعليقات الجديد
+  function toggleComments() {
+    const commentsSection = document.getElementById('commentsSection');
+    const commentsToggle = document.getElementById('commentsToggle');
+    
+    if (commentsSection.style.display === 'block') {
+      commentsSection.style.display = 'none';
+      commentsToggle.classList.remove('active');
+    } else {
+      commentsSection.style.display = 'block';
+      commentsToggle.classList.add('active');
+    }
+  }
+  
+  function loadComments() {
+    if (!currentVideoId) return;
+    
+    const commentsRef = firebase.ref(firebase.db, `comments/${currentVideoId}`);
+    firebase.onValue(commentsRef, (snapshot) => {
+      const comments = snapshot.val();
+      const commentsContainer = document.getElementById('commentsContainer');
+      commentsContainer.innerHTML = '';
+      
+      if (comments) {
+        Object.keys(comments).forEach(commentId => {
+          const comment = comments[commentId];
+          const commentElement = document.createElement('div');
+          commentElement.className = 'comment-item';
+          commentElement.innerHTML = `
+            <div class="comment-header">
+              <img src="${comment.userImage || 'https://i.imgur.com/m8Q5zT.jpg'}" class="comment-avatar" alt="صورة المستخدم">
+              <div>
+                <span class="comment-user">${comment.username}</span>
+                <span class="comment-time">${formatCommentTime(comment.timestamp)}</span>
+              </div>
+            </div>
+            <div class="comment-text">${comment.text}</div>
+          `;
+          commentsContainer.appendChild(commentElement);
+        });
+      } else {
+        commentsContainer.innerHTML = '<p style="text-align: center; color: var(--text-color); opacity: 0.7;">لا توجد تعليقات بعد</p>';
+      }
+    });
+  }
+  
+  function addComment() {
+    if (!userData || !currentVideoId) return;
+    
+    const commentInput = document.getElementById('commentInput');
+    const commentText = commentInput.value.trim();
+    
+    if (!commentText) {
+      showNotification("الرجاء كتابة تعليق قبل الإرسال", false);
+      return;
+    }
+    
+    const newComment = {
+      username: userData.username,
+      userImage: userData.image,
+      text: commentText,
+      timestamp: Date.now()
+    };
+    
+    const commentsRef = firebase.ref(firebase.db, `comments/${currentVideoId}`);
+    firebase.push(commentsRef, newComment)
+      .then(() => {
+        commentInput.value = '';
+        showNotification("تم إضافة تعليقك بنجاح");
+      })
+      .catch(err => {
+        showNotification("حدث خطأ أثناء إضافة التعليق", false);
+        console.error(err);
+      });
+  }
+  
+  function formatCommentTime(timestamp) {
+    const now = new Date();
+    const commentDate = new Date(timestamp);
+    const diffInSeconds = Math.floor((now - commentDate) / 1000);
+    
+    if (diffInSeconds < 60) {
+      return 'منذ لحظات';
+    } else if (diffInSeconds < 3600) {
+      const minutes = Math.floor(diffInSeconds / 60);
+      return `منذ ${minutes} دقيقة`;
+    } else if (diffInSeconds < 86400) {
+      const hours = Math.floor(diffInSeconds / 3600);
+      return `منذ ${hours} ساعة`;
+    } else {
+      const days = Math.floor(diffInSeconds / 86400);
+      return `منذ ${days} يوم`;
+    }
+  }
 </script>
 
 </body>
